@@ -3,12 +3,36 @@
  */
 package Stickman;
 
-public class App {
-    public String getGreeting() {
-        return "Hello world.";
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+public class App extends Application
+{
+    public static void main(String[] args)
+    {
+        launch(args);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    @Override
+    public void start(Stage theStage)
+    {
+        theStage.setTitle("Stickman!");
+        theStage.show();
+
+
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(17),
+                t -> this.draw()));
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+
+    public void draw() {
+
     }
 }
