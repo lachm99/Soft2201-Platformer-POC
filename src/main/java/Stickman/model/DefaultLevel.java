@@ -75,17 +75,44 @@ public class DefaultLevel implements Level {
 
     @Override
     public void tick() {
+        updateHero();
+    }
 
+    private void updateHero() {
+        hero.tick();
+        System.out.println(hero.getY());
+        System.out.println(hero.getHeight());
+        System.out.println(height - floorHeight);
+
+        if (hero.getY() + hero.getHeight() > height - floorHeight) {
+            hero.setY(height - floorHeight - hero.getHeight());
+            hero.setYVel(0);
+        } else {
+            hero.setYVel(hero.getYVel() - gravity);
+        }
+        if (hero.getX() < 0) {
+            hero.setXVel(0);
+            hero.setX(0);
+        } else if (hero.getX() + hero.getWidth() > width) {
+            hero.setXVel(0);
+            hero.setX(width - hero.getWidth());
+        }
     }
 
     @Override
     public boolean jump() {
-        return false;
+        if (this.getHero().getYVel() == 0) {
+            this.getHero().setYVel(-10);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean moveLeft() {
-        if (this.getHero().getX() < 0) {
+        if (this.getHero().getX() <= 0) {
+            System.out.println("NO!");
             return false;
         } else {
             this.getHero().setXVel(-1);

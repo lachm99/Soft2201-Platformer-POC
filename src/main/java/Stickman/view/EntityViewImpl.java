@@ -43,7 +43,6 @@ public class EntityViewImpl implements EntityView {
         img.setFitWidth(entity.getWidth());
         img.setPreserveRatio(true);
         markedForDelete = false;
-        this.entity.update();
     }
 
     @Override

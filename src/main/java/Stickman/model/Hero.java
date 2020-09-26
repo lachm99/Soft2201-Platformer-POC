@@ -30,9 +30,9 @@ public class Hero implements Entity {
     public void setSize(String size) {
         this.size = size;
         if (size.equalsIgnoreCase("large")) {
-            this.height = 40;
+            this.height = 90;
         } else {
-            this.height = 20;
+            this.height = 40;
         }
      }
 
@@ -89,8 +89,9 @@ public class Hero implements Entity {
     }
 
     @Override
-    public void update() {
+    public void tick() {
         this.xPos += this.xVel;
+        this.yPos += this.yVel;
     }
 
     @Override
@@ -103,11 +104,23 @@ public class Hero implements Entity {
         return false;
     }
 
+    @Override
     public void setXVel(double xVel) {
         this.xVel = xVel;
     }
 
+    @Override
     public double getXVel() {
         return xVel;
+    }
+
+    @Override
+    public void setYVel(double yVel) {
+        this.yVel = yVel;
+    }
+
+    @Override
+    public double getYVel() {
+        return yVel;
     }
 }

@@ -10,6 +10,13 @@ public interface Entity {
     boolean setX(double x);
     boolean setY(double y);
 
+    void setXVel(double xVel);
+    double getXVel();
+    void setYVel(double xVel);
+    double getYVel();
+
+
+
     double getHeight();
     double getWidth();
 
@@ -20,7 +27,7 @@ public interface Entity {
     void setImgPath(String imgPath);
 
 
-    void update();
+    void tick();
 
     Rectangle2D getBoundary();
     boolean intersects(Entity s);

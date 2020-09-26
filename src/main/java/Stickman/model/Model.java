@@ -24,7 +24,7 @@ public class Model implements GameEngine{
 
     @Override
     public boolean jump() {
-        return false;
+        return this.getCurrentLevel().jump();
     }
 
     @Override
@@ -44,6 +44,6 @@ public class Model implements GameEngine{
 
     @Override
     public void tick() {
-
+         this.getCurrentLevel().tick();
     }
 }
