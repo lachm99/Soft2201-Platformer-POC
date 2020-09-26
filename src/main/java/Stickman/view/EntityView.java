@@ -1,17 +1,13 @@
-package Stickman.model;
+package Stickman.view;
 
-import javafx.geometry.Rectangle2D;
-import javafx.scene.image.ImageView;
 
-public interface Entity {
+import Stickman.model.Entity;
 
-    void setImg(String imgPath);
+public interface EntityView {
 
-    void update();
+    Entity getEntity();
 
     void render();
 
-    Rectangle2D getBoundary();
-
-    boolean intersects(Entity s);
+    void setLayer();
 }

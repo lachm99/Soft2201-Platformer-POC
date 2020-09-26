@@ -1,7 +1,7 @@
-package stickman.view;
+package Stickman.view;
 
 import javafx.scene.layout.Pane;
-import stickman.model.GameEngine;
+import Stickman.model.GameEngine;
 
 public interface BackgroundDrawer {
     void draw(GameEngine model, Pane pane);

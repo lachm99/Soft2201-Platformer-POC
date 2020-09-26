@@ -1,2 +1,5 @@
-package Stickman.model;public interface ConfigReader {
+package Stickman.model;
+
+public interface ConfigReader {
+    void readConfig(String filePath);
 }

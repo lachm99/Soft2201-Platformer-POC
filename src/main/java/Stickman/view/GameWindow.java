@@ -1,18 +1,20 @@
-package stickman.view;
+package Stickman.view;
 
+import Stickman.input.KeyboardInputHandler;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import stickman.model.Entity;
-import stickman.model.GameEngine;
+import Stickman.model.Entity;
+import Stickman.model.GameEngine;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameWindow {
     private final int width;
+    private final int height;
     private Scene scene;
     private Pane pane;
     private GameEngine model;
@@ -22,11 +24,12 @@ public class GameWindow {
     private double xViewportOffset = 0.0;
     private static final double VIEWPORT_MARGIN = 280.0;
 
-    public GameWindow(GameEngine model, int width, int height) {
+    public GameWindow(GameEngine model, int width) {
         this.model = model;
         this.pane = new Pane();
         this.width = width;
-        this.scene = new Scene(pane, width, height);
+        this.height = model.getCurrentLevel().getHeight();
+        this.scene = new Scene(pane, this.width, this.height);
 
         this.entityViews = new ArrayList<>();
 
@@ -55,49 +58,49 @@ public class GameWindow {
     private void draw() {
         model.tick();
 
-        List<Entity> entities = model.getCurrentLevel().getEntities();
-
-        for (EntityView entityView: entityViews) {
-            entityView.markForDelete();
-        }
-
-        double heroXPos = model.getCurrentLevel().getHeroX();
-        heroXPos -= xViewportOffset;
-
-        if (heroXPos < VIEWPORT_MARGIN) {
-            if (xViewportOffset >= 0) { // Don't go further left than the start of the level
-                xViewportOffset -= VIEWPORT_MARGIN - heroXPos;
-                if (xViewportOffset < 0) {
-                    xViewportOffset = 0;
-                }
-            }
-        } else if (heroXPos > width - VIEWPORT_MARGIN) {
-            xViewportOffset += heroXPos - (width - VIEWPORT_MARGIN);
-        }
-
-        backgroundDrawer.update(xViewportOffset);
-
-        for (Entity entity: entities) {
-            boolean notFound = true;
-            for (EntityView view: entityViews) {
-                if (view.matchesEntity(entity)) {
-                    notFound = false;
-                    view.update(xViewportOffset);
-                    break;
-                }
-            }
-            if (notFound) {
-                EntityView entityView = new EntityViewImpl(entity);
-                entityViews.add(entityView);
-                pane.getChildren().add(entityView.getNode());
-            }
-        }
-
-        for (EntityView entityView: entityViews) {
-            if (entityView.isMarkedForDelete()) {
-                pane.getChildren().remove(entityView.getNode());
-            }
-        }
-        entityViews.removeIf(EntityView::isMarkedForDelete);
+//        List<Entity> entities = model.getCurrentLevel().getEntities();
+//
+//        for (EntityView entityView: entityViews) {
+//            entityView.markForDelete();
+//        }
+//
+//        double heroXPos = model.getCurrentLevel().getHeroX();
+//        heroXPos -= xViewportOffset;
+//
+//        if (heroXPos < VIEWPORT_MARGIN) {
+//            if (xViewportOffset >= 0) { // Don't go further left than the start of the level
+//                xViewportOffset -= VIEWPORT_MARGIN - heroXPos;
+//                if (xViewportOffset < 0) {
+//                    xViewportOffset = 0;
+//                }
+//            }
+//        } else if (heroXPos > width - VIEWPORT_MARGIN) {
+//            xViewportOffset += heroXPos - (width - VIEWPORT_MARGIN);
+//        }
+//
+//        backgroundDrawer.update(xViewportOffset);
+//
+//        for (Entity entity: entities) {
+//            boolean notFound = true;
+//            for (EntityView view: entityViews) {
+//                if (view.matchesEntity(entity)) {
+//                    notFound = false;
+//                    view.update(xViewportOffset);
+//                    break;
+//                }
+//            }
+//            if (notFound) {
+//                EntityView entityView = new EntityViewImpl(entity);
+//                entityViews.add(entityView);
+//                pane.getChildren().add(entityView.getNode());
+//            }
+//        }
+//
+//        for (EntityView entityView: entityViews) {
+//            if (entityView.isMarkedForDelete()) {
+//                pane.getChildren().remove(entityView.getNode());
+//            }
+//        }
+//        entityViews.removeIf(EntityView::isMarkedForDelete);
     }
 }

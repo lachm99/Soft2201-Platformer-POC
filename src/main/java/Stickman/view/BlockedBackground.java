@@ -1,9 +1,9 @@
-package stickman.view;
+package Stickman.view;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import stickman.model.GameEngine;
+import Stickman.model.GameEngine;
 
 public class BlockedBackground implements BackgroundDrawer {
     private Rectangle sky;

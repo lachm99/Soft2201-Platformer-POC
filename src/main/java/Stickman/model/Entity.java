@@ -1,50 +1,22 @@
 package Stickman.model;
 
 import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-public class Entity {
-    private String imgPath;
-    private ImageView img;
-    private double posX;
-    private double posY;
-    private double velX;
-    private double velY;
-    private double width;
-    private double height;
+public interface Entity {
 
-    public Sprite(String imgPath, double posX, double posY) {
-        this.img = new ImageView(imgPath);
-        this.posX = posX;
-        this.posY = posY;
-    }
+    double getX();
 
-    public boolean setImg(String imgPath) {
-        this.imgPath = imgPath;
-        this.img = new ImageView(this.imgPath);
-    }
+    double getY();
 
-    // ...
-    // methods omitted for brevity
-    // ...
+    boolean setX(double x);
 
-    public void update() {
-        posX += velX;
-        posY += velY;
-    }
+    boolean setY(double y);
 
-    public void render(GraphicsContext gc) {
-        gc.drawImage(this.img, this.posX, this.posY);
-    }
+    void setImg(String imgPath);
 
-    public Rectangle2D getBoundary() {
-        return new Rectangle2D(posX, posY, width, height);
-    }
+    void update();
 
-    public boolean intersects(Sprite s) {
-        return s.getBoundary().intersects(this.getBoundary());
-    }
+    Rectangle2D getBoundary();
 
+    boolean intersects(Entity s);
 }
