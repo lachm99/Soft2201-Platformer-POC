@@ -25,6 +25,7 @@ public class App extends Application
         window.run();
 
         primaryStage.setTitle("Stickman!");
+        primaryStage.setScene(window.getScene());
         primaryStage.show();
 
     }

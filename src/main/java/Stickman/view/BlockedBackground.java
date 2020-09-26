@@ -20,11 +20,11 @@ public class BlockedBackground implements BackgroundDrawer {
         double height = pane.getHeight();
         double floorHeight = model.getCurrentLevel().getFloorHeight();
 
-        this.sky = new Rectangle(0, 0, width, floorHeight);
+        this.sky = new Rectangle(0, 0, width, height - floorHeight);
         sky.setFill(Paint.valueOf("LIGHTBLUE"));
         sky.setViewOrder(1000.0);
 
-        this.floor = new Rectangle(0, floorHeight, width, height - floorHeight);
+        this.floor = new Rectangle(0, height - floorHeight, width, floorHeight);
         floor.setFill(Paint.valueOf("GREEN"));
         floor.setViewOrder(1000.0);
 

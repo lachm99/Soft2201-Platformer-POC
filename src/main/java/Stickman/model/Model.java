@@ -14,7 +14,7 @@ public class Model implements GameEngine{
 
     @Override
     public Level getCurrentLevel() {
-        return null;
+        return this.currentLevel;
     }
 
     @Override

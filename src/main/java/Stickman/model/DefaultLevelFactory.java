@@ -18,7 +18,7 @@ public class DefaultLevelFactory implements LevelFactory {
         Level l = new DefaultLevel();
         l.setHeight(600);
         l.setWidth(800);
-        l.setFloorHeight(100);
+        l.setFloorHeight(50);
         l.setGravity(0.9);
         return l;
     }
