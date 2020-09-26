@@ -1,2 +1,49 @@
-package Stickman.model;public class Model {
+package Stickman.model;
+
+public class Model implements GameEngine{
+    private Level currentLevel;
+    private Config config;
+
+    public Model(String configFile) {
+        this.config = new Config(configFile);
+
+        LevelFactory lf = new DefaultLevelFactory();
+        this.currentLevel = lf.make(this.config);
+    }
+
+
+    @Override
+    public Level getCurrentLevel() {
+        return null;
+    }
+
+    @Override
+    public void startLevel() {
+
+    }
+
+    @Override
+    public boolean jump() {
+        return false;
+    }
+
+    @Override
+    public boolean moveLeft() {
+        return false;
+    }
+
+    @Override
+    public boolean moveRight() {
+        return false;
+    }
+
+    @Override
+    public boolean stopMoving() {
+        return false;
+    }
+
+    @Override
+    public void tick() {
+
+    }
 }

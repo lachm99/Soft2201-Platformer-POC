@@ -3,11 +3,11 @@
  */
 package Stickman;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import Stickman.model.GameEngine;
+import Stickman.model.Model;
+import Stickman.view.GameWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class App extends Application
 {
@@ -17,22 +17,16 @@ public class App extends Application
     }
 
     @Override
-    public void start(Stage theStage)
+    public void start(Stage primaryStage)
     {
-        theStage.setTitle("Stickman!");
-        theStage.show();
+        GameEngine model = new Model("src/main/resources/default.json");
+        GameWindow window = new GameWindow(model, 800);
 
+        window.run();
 
-
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(17),
-                t -> this.draw()));
-
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-    }
-
-
-    public void draw() {
+        primaryStage.setTitle("Stickman!");
+        primaryStage.show();
 
     }
+
 }

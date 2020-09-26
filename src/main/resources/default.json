@@ -1,5 +1,30 @@
 {
-  "stickmanSize": "Large",
-  "stickmanPos": "250",
-  "cloudVelocity": "0"
+  "stickmanSize": "normal",
+  "stickmanPos": ["250","300"],
+  "cloudSpeed": "0",
+  "platforms": [{
+    "xPos": "10",
+    "yPos": "10",
+    "length": "50"
+    },
+    {
+      "xPos": "50",
+      "yPos": "340",
+      "length": "200"
+    },
+    {
+      "xPos": "550",
+      "yPos": "80",
+      "length": "125"
+    }
+  ],
+  "mushroomsPos": ["130", "480"],
+  "enemies": [
+    {
+      "type": "standard",
+      "xPos": "",
+      "yPos": ""
+    }
+  ],
+  "flagPos": ["500, 300"]
 }
