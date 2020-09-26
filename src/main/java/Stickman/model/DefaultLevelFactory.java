@@ -1,5 +1,7 @@
 package Stickman.model;
 
+import Stickman.view.Layer;
+
 public class DefaultLevelFactory implements LevelFactory {
     private Level level;
 
@@ -33,8 +35,10 @@ public class DefaultLevelFactory implements LevelFactory {
                 h.setSize("normal");
             }
         }
-        h.setX(config.getHeroXPos());
+        h.setX(config.getHeroXPos()+h.getHeight());
         h.setY(config.getHeroYPos());
+        h.setImgPath("ch_stand1.png");
+        h.setLayer(Layer.FOREGROUND);
 
         return h;
     }

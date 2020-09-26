@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DefaultLevel implements Level {
     private List<Entity> entities;
-    private Entity hero;
+    private Hero hero;
 
     private int height;
     private int width;
@@ -25,10 +25,11 @@ public class DefaultLevel implements Level {
     @Override
     public void setHero(Hero h) {
         this.hero = h;
+        this.entities.add(h);
     }
 
     @Override
-    public Entity getHero() {
+    public Hero getHero() {
         return this.hero;
     }
 
@@ -84,16 +85,27 @@ public class DefaultLevel implements Level {
 
     @Override
     public boolean moveLeft() {
-        return false;
+        if (this.getHero().getX() < 0) {
+            return false;
+        } else {
+            this.getHero().setXVel(-1);
+            return true;
+        }
     }
 
     @Override
     public boolean moveRight() {
-        return false;
+        if (this.getHero().getX() + this.getHero().getWidth() >= this.width) {
+            return false;
+        } else {
+            this.getHero().setXVel(1);
+            return true;
+        }
     }
 
     @Override
     public boolean stopMoving() {
-        return false;
+        this.getHero().setXVel(0);
+        return true;
     }
 }

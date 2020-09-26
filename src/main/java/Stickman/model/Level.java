@@ -5,7 +5,8 @@ import java.util.List;
 public interface Level {
     List<Entity> getEntities();
     void setHero(Hero h);
-    Entity getHero();
+    Hero getHero();
+
 
     int getHeight();
     int getWidth();

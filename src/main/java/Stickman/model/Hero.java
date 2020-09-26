@@ -1,14 +1,21 @@
 package Stickman.model;
 
+import Stickman.view.Layer;
 import javafx.geometry.Rectangle2D;
 
 public class Hero implements Entity {
     private String size;
+    private String imgPath;
 
     private double xPos;
     private double yPos;
     private double xVel;
     private double yVel;
+
+    private double height;
+    private double width;
+
+    private Layer layer;
 
     public Hero() {
         this.size = "normal";
@@ -22,37 +29,68 @@ public class Hero implements Entity {
 
     public void setSize(String size) {
         this.size = size;
-    }
-
+        if (size.equalsIgnoreCase("large")) {
+            this.height = 40;
+        } else {
+            this.height = 20;
+        }
+     }
 
     @Override
     public double getX() {
-        return 0;
+        return this.xPos;
     }
 
     @Override
     public double getY() {
-        return 0;
+        return this.yPos;
     }
 
     @Override
     public boolean setX(double x) {
-        return false;
+        this.xPos = x;
+        return true;
     }
 
     @Override
     public boolean setY(double y) {
-        return false;
+        this.yPos = y;
+        return true;
     }
 
     @Override
-    public void setImg(String imgPath) {
+    public double getHeight() {
+        return this.height;
+    }
 
+    @Override
+    public double getWidth() {
+        return this.width;
+    }
+
+    @Override
+    public Layer getLayer() {
+        return this.layer;
+    }
+
+    @Override
+    public void setLayer(Layer layer) {
+        this.layer = layer;
+    }
+
+    @Override
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    @Override
+    public String getImgPath() {
+        return this.imgPath;
     }
 
     @Override
     public void update() {
-
+        this.xPos += this.xVel;
     }
 
     @Override
@@ -63,5 +101,13 @@ public class Hero implements Entity {
     @Override
     public boolean intersects(Entity s) {
         return false;
+    }
+
+    public void setXVel(double xVel) {
+        this.xVel = xVel;
+    }
+
+    public double getXVel() {
+        return xVel;
     }
 }

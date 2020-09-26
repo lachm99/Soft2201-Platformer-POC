@@ -58,49 +58,53 @@ public class GameWindow {
     private void draw() {
         model.tick();
 
-//        List<Entity> entities = model.getCurrentLevel().getEntities();
-//
-//        for (EntityView entityView: entityViews) {
-//            entityView.markForDelete();
-//        }
-//
-//        double heroXPos = model.getCurrentLevel().getHeroX();
-//        heroXPos -= xViewportOffset;
-//
-//        if (heroXPos < VIEWPORT_MARGIN) {
-//            if (xViewportOffset >= 0) { // Don't go further left than the start of the level
-//                xViewportOffset -= VIEWPORT_MARGIN - heroXPos;
-//                if (xViewportOffset < 0) {
-//                    xViewportOffset = 0;
-//                }
-//            }
-//        } else if (heroXPos > width - VIEWPORT_MARGIN) {
-//            xViewportOffset += heroXPos - (width - VIEWPORT_MARGIN);
-//        }
-//
-//        backgroundDrawer.update(xViewportOffset);
-//
-//        for (Entity entity: entities) {
-//            boolean notFound = true;
-//            for (EntityView view: entityViews) {
-//                if (view.matchesEntity(entity)) {
-//                    notFound = false;
-//                    view.update(xViewportOffset);
-//                    break;
-//                }
-//            }
-//            if (notFound) {
-//                EntityView entityView = new EntityViewImpl(entity);
-//                entityViews.add(entityView);
-//                pane.getChildren().add(entityView.getNode());
-//            }
-//        }
-//
-//        for (EntityView entityView: entityViews) {
-//            if (entityView.isMarkedForDelete()) {
-//                pane.getChildren().remove(entityView.getNode());
-//            }
-//        }
-//        entityViews.removeIf(EntityView::isMarkedForDelete);
+        List<Entity> entities = model.getCurrentLevel().getEntities();
+
+
+        for (EntityView entityView: entityViews) {
+            entityView.markForDelete();
+        }
+
+        double heroXPos = model.getCurrentLevel().getHero().getX();
+        heroXPos -= xViewportOffset;
+
+
+
+        if (heroXPos < VIEWPORT_MARGIN) {
+            if (xViewportOffset >= 0) { // Don't go further left than the start of the level
+                xViewportOffset -= VIEWPORT_MARGIN - heroXPos;
+                if (xViewportOffset < 0) {
+                    xViewportOffset = 0;
+                }
+            }
+        } else if (heroXPos > width - VIEWPORT_MARGIN) {
+            xViewportOffset += heroXPos - (width - VIEWPORT_MARGIN);
+        }
+
+        backgroundDrawer.update(xViewportOffset);
+
+        for (Entity entity: entities) {
+            boolean notFound = true;
+            for (EntityView view: entityViews) {
+                if (view.matchesEntity(entity)) {
+                    notFound = false;
+                    view.update(xViewportOffset);
+                    break;
+                }
+            }
+            if (notFound) {
+                EntityView entityView = new EntityViewImpl(entity);
+                entityViews.add(entityView);
+                pane.getChildren().add(entityView.getImageView());
+                System.out.println("Not found!");
+            }
+        }
+
+        for (EntityView entityView: entityViews) {
+            if (entityView.isMarkedForDelete()) {
+                pane.getChildren().remove(entityView.getImageView());
+            }
+        }
+        entityViews.removeIf(EntityView::isMarkedForDelete);
     }
 }

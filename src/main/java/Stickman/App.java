@@ -22,11 +22,13 @@ public class App extends Application
         GameEngine model = new Model("src/main/resources/default.json");
         GameWindow window = new GameWindow(model, 800);
 
-        window.run();
 
         primaryStage.setTitle("Stickman!");
         primaryStage.setScene(window.getScene());
         primaryStage.show();
+
+        window.run();
+
 
     }
 

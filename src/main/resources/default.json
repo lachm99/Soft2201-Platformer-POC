@@ -1,6 +1,6 @@
 {
   "stickmanSize": "normal",
-  "stickmanPos": ["250","300"],
+  "stickmanPos": ["250","250"],
   "cloudSpeed": "0",
   "platforms": [{
     "xPos": "10",

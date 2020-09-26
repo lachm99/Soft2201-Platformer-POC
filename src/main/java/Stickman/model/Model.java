@@ -29,17 +29,17 @@ public class Model implements GameEngine{
 
     @Override
     public boolean moveLeft() {
-        return false;
+        return this.getCurrentLevel().moveLeft();
     }
 
     @Override
     public boolean moveRight() {
-        return false;
+        return this.getCurrentLevel().moveRight();
     }
 
     @Override
     public boolean stopMoving() {
-        return false;
+        return this.getCurrentLevel().stopMoving();
     }
 
     @Override
