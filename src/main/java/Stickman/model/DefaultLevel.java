@@ -80,10 +80,6 @@ public class DefaultLevel implements Level {
 
     private void updateHero() {
         hero.tick();
-        System.out.println(hero.getY());
-        System.out.println(hero.getHeight());
-        System.out.println(height - floorHeight);
-
         if (hero.getY() + hero.getHeight() > height - floorHeight) {
             hero.setY(height - floorHeight - hero.getHeight());
             hero.setYVel(0);
@@ -91,18 +87,16 @@ public class DefaultLevel implements Level {
             hero.setYVel(hero.getYVel() - gravity);
         }
         if (hero.getX() < 0) {
-            hero.setXVel(0);
-            hero.setX(0);
+            stopMoving();
         } else if (hero.getX() + hero.getWidth() > width) {
-            hero.setXVel(0);
-            hero.setX(width - hero.getWidth());
+            stopMoving();
         }
     }
 
     @Override
     public boolean jump() {
-        if (this.getHero().getYVel() == 0) {
-            this.getHero().setYVel(-10);
+        if (getHero().getY() + getHero().getHeight() >= height - floorHeight) {
+            this.getHero().setYVel(-15);
             return true;
         } else {
             return false;
@@ -111,28 +105,27 @@ public class DefaultLevel implements Level {
 
     @Override
     public boolean moveLeft() {
-        if (this.getHero().getX() <= 0) {
-            System.out.println("NO!");
+        if (this.getHero().getX() < 0) {
             return false;
         } else {
-            this.getHero().setXVel(-1);
+            this.getHero().moveLeft();
             return true;
         }
     }
 
     @Override
     public boolean moveRight() {
-        if (this.getHero().getX() + this.getHero().getWidth() >= this.width) {
+        if (this.getHero().getX() + this.getHero().getWidth() > this.width) {
             return false;
         } else {
-            this.getHero().setXVel(1);
+            this.getHero().moveRight();
             return true;
         }
     }
 
     @Override
     public boolean stopMoving() {
-        this.getHero().setXVel(0);
+        this.getHero().stopMoving();
         return true;
     }
 }

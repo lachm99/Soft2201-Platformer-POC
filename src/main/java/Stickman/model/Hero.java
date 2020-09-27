@@ -3,9 +3,20 @@ package Stickman.model;
 import Stickman.view.Layer;
 import javafx.geometry.Rectangle2D;
 
-public class Hero implements Entity {
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Hero implements MovableEntity {
     private String size;
+    private ArrayList<String> walkLeftImg;
+    private ArrayList<String> faceLeftImg;
+    private ArrayList<String> walkRightImg;
+    private ArrayList<String> faceRightImg;
+
     private String imgPath;
+    private int frameIndex;
+    private int picIndex;
+    private int imgList;
 
     private double xPos;
     private double yPos;
@@ -21,6 +32,22 @@ public class Hero implements Entity {
         this.size = "normal";
         this.xPos = 0;
         this.yPos = 0;
+        this.walkLeftImg = new ArrayList<String>(Arrays.asList("ch_walk5.png",
+                "ch_walk6.png",
+                "ch_walk7.png",
+                "ch_walk8.png"));
+        this.faceLeftImg = new ArrayList<String>(Arrays.asList("ch_stand4.png",
+                "ch_stand5.png",
+                "ch_stand6.png"));
+
+        this.walkRightImg = new ArrayList<String>(Arrays.asList("ch_walk1.png",
+                "ch_walk2.png",
+                "ch_walk3.png",
+                "ch_walk4.png"));
+        this.faceRightImg = new ArrayList<String>(Arrays.asList("ch_stand1.png",
+                "ch_stand2.png",
+                "ch_stand3.png"));
+        this.imgList = 3;
     }
 
     public String getSize() {
@@ -30,9 +57,11 @@ public class Hero implements Entity {
     public void setSize(String size) {
         this.size = size;
         if (size.equalsIgnoreCase("large")) {
-            this.height = 90;
+            this.height = 136;
+            this.width = 80;
         } else {
-            this.height = 40;
+            this.height = 50;
+            this.width = 30;
         }
      }
 
@@ -92,6 +121,22 @@ public class Hero implements Entity {
     public void tick() {
         this.xPos += this.xVel;
         this.yPos += this.yVel;
+        animate();
+    }
+
+    public void animate() {
+        if (frameIndex++ %15 == 0) {
+            this.picIndex ++;
+        }
+        if (imgList == 0) {
+            setImgPath(walkLeftImg.get(picIndex%walkLeftImg.size()));
+        } else if (imgList == 1) {
+            setImgPath(walkRightImg.get(picIndex%walkRightImg.size()));
+        } else if (imgList == 2) {
+            setImgPath(faceLeftImg.get(picIndex%faceLeftImg.size()));
+        } else if (imgList == 3) {
+            setImgPath(faceRightImg.get(picIndex%faceRightImg.size()));
+        }
     }
 
     @Override
@@ -123,4 +168,27 @@ public class Hero implements Entity {
     public double getYVel() {
         return yVel;
     }
+
+    @Override
+    public void moveLeft() {
+        this.setXVel(-4);
+        imgList = 0;
+    }
+
+    @Override
+    public void moveRight() {
+        this.setXVel(4);
+        imgList = 1;
+    }
+
+    @Override
+    public void stopMoving() {
+        if (this.xVel < 0) {
+            imgList = 2;
+        } else {
+            imgList = 3;
+        }
+        this.setXVel(0);
+    }
+
 }

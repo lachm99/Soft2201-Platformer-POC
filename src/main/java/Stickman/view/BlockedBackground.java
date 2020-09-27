@@ -1,5 +1,6 @@
 package Stickman.view;
 
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -8,6 +9,10 @@ import Stickman.model.GameEngine;
 public class BlockedBackground implements BackgroundDrawer {
     private Rectangle sky;
     private Rectangle floor;
+    private ImageView tree;
+    private ImageView tree2;
+
+    private int treeX = 500;
     private Pane pane;
     private GameEngine model;
 
@@ -29,10 +34,25 @@ public class BlockedBackground implements BackgroundDrawer {
         floor.setViewOrder(1000.0);
 
         pane.getChildren().addAll(sky, floor);
+
+        this.tree = new ImageView("tree.png");
+        this.tree2 = new ImageView("tree.png");
+
+        this.tree.setX(treeX);
+        this.tree2.setX(2*treeX);
+        this.tree.setY(height - floorHeight - tree.getImage().getHeight());
+        this.tree2.setY(height - floorHeight - tree.getImage().getHeight());
+
+        this.tree.setViewOrder(1000.0);
+        this.tree2.setViewOrder(1000.0);
+
+        pane.getChildren().addAll(tree, tree2);
     }
 
     @Override
     public void update(double xViewportOffset) {
-        // do nothing since this is a static bg
+        this.tree.setX(treeX - xViewportOffset);
+        this.tree2.setX(2*treeX - xViewportOffset);
+
     }
 }

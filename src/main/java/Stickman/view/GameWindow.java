@@ -65,20 +65,21 @@ public class GameWindow {
             entityView.markForDelete();
         }
 
-        double heroXPos = model.getCurrentLevel().getHero().getX();
-        heroXPos -= xViewportOffset;
+        double heroStageX = model.getCurrentLevel().getHero().getX();
+        double heroWindowX = heroStageX - xViewportOffset;
 
 
-
-        if (heroXPos < VIEWPORT_MARGIN) {
+        if (heroWindowX < VIEWPORT_MARGIN) {
             if (xViewportOffset >= 0) { // Don't go further left than the start of the level
-                xViewportOffset -= VIEWPORT_MARGIN - heroXPos;
+                xViewportOffset -= VIEWPORT_MARGIN - heroWindowX;
                 if (xViewportOffset < 0) {
                     xViewportOffset = 0;
                 }
             }
-        } else if (heroXPos > width - VIEWPORT_MARGIN) {
-            xViewportOffset += heroXPos - (width - VIEWPORT_MARGIN);
+        } else if (heroWindowX > width - VIEWPORT_MARGIN) {
+            if (heroStageX < model.getCurrentLevel().getWidth() - VIEWPORT_MARGIN) {
+                xViewportOffset += heroWindowX - (width - VIEWPORT_MARGIN);
+            }
         }
 
         backgroundDrawer.update(xViewportOffset);
@@ -96,7 +97,6 @@ public class GameWindow {
                 EntityView entityView = new EntityViewImpl(entity);
                 entityViews.add(entityView);
                 pane.getChildren().add(entityView.getImageView());
-                System.out.println("Not found!");
             }
         }
 

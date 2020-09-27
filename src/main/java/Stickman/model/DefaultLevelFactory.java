@@ -8,9 +8,8 @@ public class DefaultLevelFactory implements LevelFactory {
     @Override
     public Level make(Config config) {
         this.level = initLevel();
+
         Hero h = createHero(config);
-        h.setX(config.getHeroXPos());
-        h.setY(level.getHeight() - config.getHeroYPos());
         this.level.setHero(h);
 
 
@@ -21,9 +20,9 @@ public class DefaultLevelFactory implements LevelFactory {
     public Level initLevel() {
         Level l = new DefaultLevel();
         l.setHeight(600);
-        l.setWidth(800);
+        l.setWidth(1200);
         l.setFloorHeight(50);
-        l.setGravity(-1);
+        l.setGravity(-0.9);
         return l;
     }
 
@@ -34,12 +33,11 @@ public class DefaultLevelFactory implements LevelFactory {
             if (config.getHeroSize().equalsIgnoreCase("large")) {
                 h.setSize("large");
             }
-        }
-        else {
+        } else {
             h.setSize("normal");
-
         }
-
+        h.setX(config.getHeroXPos());
+        h.setY(level.getHeight() - config.getHeroYPos());
         h.setImgPath("ch_stand1.png");
         h.setLayer(Layer.FOREGROUND);
 
