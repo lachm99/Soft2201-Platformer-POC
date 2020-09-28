@@ -11,8 +11,6 @@ public class EntityViewImpl implements EntityView {
     private String imagePath;
     private boolean markedForDelete = false;
 
-
-
     EntityViewImpl(Entity entity) {
         this.entity = entity;
         this.imagePath = entity.getImgPath();

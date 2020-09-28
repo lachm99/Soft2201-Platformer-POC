@@ -7,6 +7,6 @@ public interface LevelFactory {
     Level initLevel();
 
     Hero createHero(Config config);
-    boolean assembleLevel();
+    boolean assembleLevel(Config config);
 
 }

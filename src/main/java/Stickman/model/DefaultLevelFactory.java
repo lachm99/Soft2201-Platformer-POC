@@ -1,6 +1,7 @@
 package Stickman.model;
 
 import Stickman.view.Layer;
+import org.json.simple.JSONObject;
 
 public class DefaultLevelFactory implements LevelFactory {
     private Level level;
@@ -12,6 +13,7 @@ public class DefaultLevelFactory implements LevelFactory {
         Hero h = createHero(config);
         this.level.setHero(h);
 
+        assembleLevel(config);
 
         return this.level;
     }
@@ -45,7 +47,15 @@ public class DefaultLevelFactory implements LevelFactory {
     }
 
     @Override
-    public boolean assembleLevel() {
+    public boolean assembleLevel(Config config) {
+        for (Object m : config.getMushrooms()) {
+            JSONObject mushroom = (JSONObject) m;
+            double x = Double.parseDouble(mushroom.get("xPos").toString());
+            double y = Double.parseDouble(mushroom.get("yPos").toString());
+
+            level.getEntities().add(new Mushroom(x, level.getHeight() - y - 20));
+        }
+
         return false;
     }
 }

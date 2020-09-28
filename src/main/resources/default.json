@@ -18,7 +18,16 @@
       "length": "125"
     }
   ],
-  "mushroomsPos": ["130", "480"],
+  "mushrooms": [
+    {
+      "xPos": "130",
+      "yPos": "50"
+    },
+    {
+      "xPos": "480",
+      "yPos": "50"
+    }
+    ],
   "enemies": [
     {
       "type": "standard",

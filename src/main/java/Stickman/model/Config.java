@@ -14,7 +14,7 @@ public class Config implements ConfigReader {
     private double cloudSpeed;
     private JSONArray stickmanPos;
     private JSONArray platforms;
-    private JSONArray mushroomsPos;
+    private JSONArray mushrooms;
     private JSONArray enemies;
     private JSONArray flagPos;
 
@@ -37,7 +37,7 @@ public class Config implements ConfigReader {
             this.cloudSpeed = Double.parseDouble((String)configJson.get("cloudSpeed"));
 
             this.platforms = (JSONArray) configJson.get("platforms");
-            this.mushroomsPos = (JSONArray) configJson.get("mushroomsPos");
+            this.mushrooms = (JSONArray) configJson.get("mushrooms");
             this.enemies = (JSONArray) configJson.get("enemies");
             this.flagPos = (JSONArray) configJson.get("flagPos");
 
@@ -67,5 +67,10 @@ public class Config implements ConfigReader {
     public double getCloudSpeed() {
         return this.cloudSpeed;
     }
+
+    public JSONArray getMushrooms() {
+        return this.mushrooms;
+    }
+
 
 }
