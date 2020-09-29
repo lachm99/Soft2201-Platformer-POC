@@ -5,18 +5,23 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import Stickman.model.Entity;
 
-public class EntityViewImpl implements EntityView {
+
+public class EntityImage implements EntityView {
     private Entity entity;
     private ImageView img;
     private String imagePath;
     private boolean markedForDelete = false;
 
-    EntityViewImpl(Entity entity) {
+    EntityImage(Entity entity) {
         this.entity = entity;
         this.imagePath = entity.getImgPath();
-        this.img = new ImageView(entity.getImgPath());
-        this.img.setViewOrder(getViewOrder(entity.getLayer()));
-        update(0);
+        if (imagePath == null) {
+            // This shouldn't happen!
+        } else {
+            this.img = new ImageView(entity.getImgPath());
+            this.img.setViewOrder(getViewOrder(entity.getLayer()));
+            update(0);
+        }
     }
 
     private double getViewOrder(Layer layer) {
@@ -30,16 +35,18 @@ public class EntityViewImpl implements EntityView {
 
     @Override
     public void update(double xViewportOffset) {
-        String newPath = entity.getImgPath();
-        if (!imagePath.equals(newPath)) {
-            imagePath = newPath;
-            img.setImage(new Image(imagePath));
+        if (imagePath != null) {
+            String newPath = entity.getImgPath();
+            if (!imagePath.equals(newPath)) {
+                imagePath = newPath;
+                img.setImage(new Image(imagePath));
+            }
+            img.setX(entity.getX() - xViewportOffset);
+            img.setY(entity.getY());
+            img.setFitHeight(entity.getHeight());
+            img.setFitWidth(entity.getWidth());
+            img.setPreserveRatio(true);
         }
-        img.setX(entity.getX() - xViewportOffset);
-        img.setY(entity.getY());
-        img.setFitHeight(entity.getHeight());
-        img.setFitWidth(entity.getWidth());
-        img.setPreserveRatio(true);
         markedForDelete = false;
     }
 
@@ -59,7 +66,7 @@ public class EntityViewImpl implements EntityView {
     }
 
     @Override
-    public ImageView getImageView() {
+    public Node getNode() {
         return this.img;
     }
 
