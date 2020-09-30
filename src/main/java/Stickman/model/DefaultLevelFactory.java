@@ -24,7 +24,7 @@ public class DefaultLevelFactory implements LevelFactory {
         l.setHeight(600);
         l.setWidth(1200);
         l.setFloorHeight(50);
-        l.setGravity(-0.9);
+        l.setGravity(-0.85);
         return l;
     }
 
@@ -38,6 +38,7 @@ public class DefaultLevelFactory implements LevelFactory {
         } else {
             h.setSize("normal");
         }
+
         h.setX(config.getHeroXPos());
         h.setY(level.getHeight() - config.getHeroYPos());
         h.setImgPath("ch_stand1.png");
@@ -48,13 +49,31 @@ public class DefaultLevelFactory implements LevelFactory {
 
     @Override
     public boolean assembleLevel(Config config) {
+        // Add mushrooms at floor height, based on config.
         for (Object m : config.getMushrooms()) {
             JSONObject mushroom = (JSONObject) m;
             double x = Double.parseDouble(mushroom.get("xPos").toString());
-            double y = Double.parseDouble(mushroom.get("yPos").toString());
-
-            level.getEntities().add(new Mushroom(x, level.getHeight() - y - 20));
+            double height = Double.parseDouble(mushroom.get("height").toString());
+            level.getEntities().add(new Mushroom(x, level.getHeight() - level.getFloorHeight() - height, height));
         }
+        // Add platforms as specified
+        for (Object p : config.getPlatforms()) {
+            JSONObject platform = (JSONObject) p;
+            double x = Double.parseDouble(platform.get("xPos").toString());
+            double y = Double.parseDouble(platform.get("yPos").toString());
+            double len = Double.parseDouble(platform.get("length").toString());
+
+            level.getEntities().add(new Platform(x, level.getHeight() - y, len));
+        }
+
+        // Add invisible barriers that the player collides with (floor, edges etc.)
+        level.getEntities().add(new Barrier(-10,0, level.getHeight(), 10));
+        level.getEntities().add(new Barrier(level.getWidth(),0, level.getHeight(), 10));
+        level.getEntities().add(new Barrier(0,level.getHeight() - level.getFloorHeight(), 10, level.getWidth()));
+
+
+
+
 
         return false;
     }

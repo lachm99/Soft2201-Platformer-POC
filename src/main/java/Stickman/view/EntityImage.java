@@ -10,7 +10,7 @@ public class EntityImage implements EntityView {
     private Entity entity;
     private ImageView img;
     private String imagePath;
-    private boolean markedForDelete = false;
+    private boolean markedForDelete;
 
     EntityImage(Entity entity) {
         this.entity = entity;
@@ -22,6 +22,7 @@ public class EntityImage implements EntityView {
             this.img.setViewOrder(getViewOrder(entity.getLayer()));
             update(0);
         }
+        markedForDelete = false;
     }
 
     private double getViewOrder(Layer layer) {

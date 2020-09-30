@@ -10,6 +10,8 @@ public interface Entity {
     boolean setX(double x);
     boolean setY(double y);
 
+    int[] getCollisionFlags();
+    void setCollisionFlags(int x, int y);
 
     double getHeight();
     double getWidth();
@@ -17,12 +19,11 @@ public interface Entity {
     Layer getLayer();
     void setLayer(Layer layer);
 
+    boolean hasImg();
     String getImgPath();
     void setImgPath(String imgPath);
 
     void tick();
 
-    Rectangle2D getBoundary();
-    boolean intersects(Entity s);
-
+    void collide(Entity entity);
 }

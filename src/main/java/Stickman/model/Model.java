@@ -6,11 +6,9 @@ public class Model implements GameEngine{
 
     public Model(String configFile) {
         this.config = new Config(configFile);
-
         LevelFactory lf = new DefaultLevelFactory();
         this.currentLevel = lf.make(this.config);
     }
-
 
     @Override
     public Level getCurrentLevel() {
@@ -46,4 +44,5 @@ public class Model implements GameEngine{
     public void tick() {
          this.getCurrentLevel().tick();
     }
+
 }

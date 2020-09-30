@@ -8,6 +8,8 @@ import java.util.Arrays;
 
 public class Hero implements MovableEntity {
     private String size;
+    private double strength;
+
     private ArrayList<String> walkLeftImg;
     private ArrayList<String> faceLeftImg;
     private ArrayList<String> walkRightImg;
@@ -27,9 +29,13 @@ public class Hero implements MovableEntity {
     private double width;
 
     private Layer layer;
+    private boolean grounded;
+
+    private int[] collisionFlags;
 
     public Hero() {
         this.size = "normal";
+        this.strength = 1;
         this.xPos = 0;
         this.yPos = 0;
         this.walkLeftImg = new ArrayList<String>(Arrays.asList("ch_walk5.png",
@@ -48,6 +54,7 @@ public class Hero implements MovableEntity {
                 "ch_stand2.png",
                 "ch_stand3.png"));
         this.imgList = 3;
+        this.collisionFlags = new int[] {0,0};
     }
 
     public String getSize() {
@@ -59,9 +66,11 @@ public class Hero implements MovableEntity {
         if (size.equalsIgnoreCase("large")) {
             this.height = 136;
             this.width = 80;
+            this.strength = 5;
         } else {
             this.height = 50;
             this.width = 30;
+            this.strength = 2;
         }
      }
 
@@ -108,6 +117,14 @@ public class Hero implements MovableEntity {
     }
 
     @Override
+    public boolean hasImg() {
+        if (this.getImgPath() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
     }
@@ -119,12 +136,19 @@ public class Hero implements MovableEntity {
 
     @Override
     public void tick() {
+        if (this.collisionFlags[1] != -1) {
+            this.yPos += this.yVel;
+        }
         this.xPos += this.xVel;
-        this.yPos += this.yVel;
         animate();
     }
 
-    public void animate() {
+    @Override
+    public void collide(Entity entity) {
+
+    }
+
+    private void animate() {
         if (frameIndex++ %15 == 0) {
             this.picIndex ++;
         }
@@ -139,13 +163,23 @@ public class Hero implements MovableEntity {
         }
     }
 
-    @Override
-    public Rectangle2D getBoundary() {
-        return null;
+    public boolean willIntersectX(Entity s) {
+        if (xPos + width + xVel > s.getX() &&
+                xPos + xVel < s.getX() + s.getWidth() &&
+                yPos + height > s.getY() &&
+                yPos < s.getY() + s.getHeight()) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public boolean intersects(Entity s) {
+    public boolean willIntersectY(Entity s) {
+        if (xPos + width  > s.getX() &&
+                xPos < s.getX() + s.getWidth() &&
+                yPos + height + yVel > s.getY() &&
+                yPos + yVel < s.getY() + s.getHeight()) {
+            return true;
+        }
         return false;
     }
 
@@ -191,4 +225,19 @@ public class Hero implements MovableEntity {
         this.setXVel(0);
     }
 
+    public double getStrength() {
+        return this.strength;
+    }
+
+
+    @Override
+    public int[] getCollisionFlags() {
+        return this.collisionFlags;
+    }
+
+    @Override
+    public void setCollisionFlags(int x, int y) {
+        this.collisionFlags[0] = x;
+        this.collisionFlags[1] = y;
+    }
 }

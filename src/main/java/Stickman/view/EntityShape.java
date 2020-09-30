@@ -1,27 +1,30 @@
 package Stickman.view;
 
+import Stickman.model.Entity;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import Stickman.model.Entity;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 
-public class EntityImage implements EntityView {
+public class EntityShape implements EntityView {
     private Entity entity;
-    private ImageView img;
-    private String imagePath;
-    private boolean markedForDelete = false;
+    private Shape shape;
+    private boolean markedForDelete;
 
-    EntityImage(Entity entity) {
+    EntityShape(Entity entity) {
         this.entity = entity;
-        this.imagePath = entity.getImgPath();
-        if (imagePath == null) {
-            // This shouldn't happen!
-        } else {
-            this.img = new ImageView(entity.getImgPath());
-            this.img.setViewOrder(getViewOrder(entity.getLayer()));
-            update(0);
-        }
+        this.shape = new Rectangle(entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight());
+        this.shape.setStroke(Color.RED);
+        this.shape.setFill(null);
+
+        this.shape.setViewOrder(getViewOrder(entity.getLayer()));
+        update(0);
+
+        markedForDelete = false;
     }
 
     private double getViewOrder(Layer layer) {
@@ -35,18 +38,7 @@ public class EntityImage implements EntityView {
 
     @Override
     public void update(double xViewportOffset) {
-        if (imagePath != null) {
-            String newPath = entity.getImgPath();
-            if (!imagePath.equals(newPath)) {
-                imagePath = newPath;
-                img.setImage(new Image(imagePath));
-            }
-            img.setX(entity.getX() - xViewportOffset);
-            img.setY(entity.getY());
-            img.setFitHeight(entity.getHeight());
-            img.setFitWidth(entity.getWidth());
-            img.setPreserveRatio(true);
-        }
+        shape.relocate(entity.getX() - xViewportOffset, entity.getY());
         markedForDelete = false;
     }
 
@@ -57,7 +49,7 @@ public class EntityImage implements EntityView {
 
     @Override
     public void markForDelete() {
-        this.markedForDelete = true;
+//        this.markedForDelete = true;
     }
 
     @Override
@@ -67,7 +59,7 @@ public class EntityImage implements EntityView {
 
     @Override
     public Node getNode() {
-        return this.img;
+        return this.shape;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package Stickman.view;
 
 import Stickman.input.KeyboardInputHandler;
+import Stickman.model.Hero;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ public class GameWindow {
     private Pane pane;
     private GameEngine model;
     private List<EntityView> entityViews;
+    private EntityView heroView;
     private BackgroundDrawer backgroundDrawer;
 
     private double xViewportOffset = 0.0;
@@ -39,8 +41,10 @@ public class GameWindow {
         scene.setOnKeyReleased(keyboardInputHandler::handleReleased);
 
         this.backgroundDrawer = new BlockedBackground();
+        this.heroView = new EntityImage(model.getCurrentLevel().getHero());
 
         backgroundDrawer.draw(model, pane);
+        pane.getChildren().add(this.heroView.getNode());
     }
 
     public Scene getScene() {
@@ -60,14 +64,47 @@ public class GameWindow {
 
         List<Entity> entities = model.getCurrentLevel().getEntities();
 
-
         for (EntityView entityView: entityViews) {
             entityView.markForDelete();
         }
 
-        double heroStageX = model.getCurrentLevel().getHero().getX();
-        double heroWindowX = heroStageX - xViewportOffset;
+        updateXViewportOffset();
+        backgroundDrawer.update(xViewportOffset);
+        heroView.update(xViewportOffset);
 
+
+        for (Entity entity: entities) {
+            boolean notFound = true;
+            for (EntityView view: entityViews) {
+                if (view.matchesEntity(entity)) {
+                    notFound = false;
+                    view.update(xViewportOffset);
+                }
+            }
+            if (notFound) {
+                if (entity.hasImg()) {
+                    EntityView eImg = new EntityImage(entity);
+                    entityViews.add(eImg);
+                    pane.getChildren().add(eImg.getNode());
+                }
+                EntityView eWireFrame = new EntityShape(entity);
+                entityViews.add(eWireFrame);
+                pane.getChildren().add(eWireFrame.getNode());
+            }
+        }
+
+        for (EntityView entityView: entityViews) {
+            if (entityView.isMarkedForDelete()) {
+                pane.getChildren().remove(entityView.getNode());
+            }
+        }
+        entityViews.removeIf(EntityView::isMarkedForDelete);
+    }
+
+
+    public void updateXViewportOffset() {
+        double heroStageX = heroView.getEntity().getX();
+        double heroWindowX = heroStageX - xViewportOffset;
 
         if (heroWindowX < VIEWPORT_MARGIN) {
             if (xViewportOffset >= 0) { // Don't go further left than the start of the level
@@ -81,30 +118,5 @@ public class GameWindow {
                 xViewportOffset += heroWindowX - (width - VIEWPORT_MARGIN);
             }
         }
-
-        backgroundDrawer.update(xViewportOffset);
-
-        for (Entity entity: entities) {
-            boolean notFound = true;
-            for (EntityView view: entityViews) {
-                if (view.matchesEntity(entity)) {
-                    notFound = false;
-                    view.update(xViewportOffset);
-                    break;
-                }
-            }
-            if (notFound) {
-                EntityView entityView = new EntityViewImpl(entity);
-                entityViews.add(entityView);
-                pane.getChildren().add(entityView.getImageView());
-            }
-        }
-
-        for (EntityView entityView: entityViews) {
-            if (entityView.isMarkedForDelete()) {
-                pane.getChildren().remove(entityView.getImageView());
-            }
-        }
-        entityViews.removeIf(EntityView::isMarkedForDelete);
     }
 }

@@ -3,27 +3,28 @@ package Stickman.model;
 import Stickman.view.Layer;
 import javafx.geometry.Rectangle2D;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Mushroom implements Entity {
     private String imgPath;
 
     private double xPos;
     private double yPos;
 
+
     private double height;
     private double width;
 
     private Layer layer;
+    private int[] collisionFlags;
 
-    public Mushroom(double xPos, double yPos) {
+    public Mushroom(double xPos, double yPos, double height) {
         this.xPos = xPos;
         this.yPos = yPos;
         layer = Layer.FOREGROUND;
         this.imgPath = "mushroom.png";
-        this.height = 30;
-        this.width = 18;
+        this.height = height;
+        this.width = height*0.9;
+        this.layer = Layer.FOREGROUND;
+        this.collisionFlags = new int[] {0,0};
     }
 
 
@@ -80,18 +81,28 @@ public class Mushroom implements Entity {
     }
 
     @Override
+    public boolean hasImg() {
+        return (this.getImgPath() != null);
+    }
+
+    @Override
     public void tick() {
         // Do nothing!
     }
 
     @Override
-    public Rectangle2D getBoundary() {
-        return null;
+    public void collide(Entity entity) {
     }
 
     @Override
-    public boolean intersects(Entity s) {
-        return false;
+    public int[] getCollisionFlags() {
+        return this.collisionFlags;
+    }
+
+    @Override
+    public void setCollisionFlags(int x, int y) {
+        this.collisionFlags[0] = x;
+        this.collisionFlags[1] = y;
     }
 
 }

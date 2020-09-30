@@ -9,7 +9,7 @@ public interface EntityView {
 
     Entity getEntity();
 
-    ImageView getImageView();
+    Node getNode();
 
     void setLayer(Layer layer);
 
@@ -20,5 +20,4 @@ public interface EntityView {
     void markForDelete();
 
     boolean isMarkedForDelete();
-
 }

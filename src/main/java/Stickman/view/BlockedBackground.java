@@ -14,7 +14,7 @@ public class BlockedBackground implements BackgroundDrawer {
     private ImageView trees_2;
     private ImageView trees_3;
 
-    private final double parallax = 0.8;
+    private final double parallax = 0.6;
 
     private Pane pane;
     private GameEngine model;
@@ -67,9 +67,9 @@ public class BlockedBackground implements BackgroundDrawer {
 
     @Override
     public void update(double xViewportOffset) {
-        this.mountains.setX(-(xViewportOffset * 0.5*parallax));
+        this.mountains.setX(-(xViewportOffset * 0.2*parallax));
         this.trees_1.setX(-(xViewportOffset * 0.8*parallax));
         this.trees_2.setX(-(xViewportOffset * 0.9*parallax));
-        this.trees_3.setX(-(xViewportOffset * 1*parallax));
+        this.trees_3.setX(-(xViewportOffset * 1.2*parallax));
     }
 }

@@ -72,5 +72,10 @@ public class Config implements ConfigReader {
         return this.mushrooms;
     }
 
+    public JSONArray getPlatforms() {
+        return this.platforms;
+    }
+
+
 
 }
