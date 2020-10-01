@@ -1,0 +1,31 @@
+{
+  "heroSize": "normal",
+  "heroPos": ["128","128"],
+  "cloudVelocity": "0",
+
+  "platformsPos": [
+    {
+      "xPos": "150",
+      "yPos": "200"
+    },
+    {
+      "xPos": "512",
+      "yPos": "300"
+    },
+    {
+      "xPos": "770",
+      "yPos": "256"
+    }
+  ],
+
+  "mushroomsPos": ["130", "480", "1400"],
+
+  "enemies": [
+    {
+      "type": "standard",
+      "xPos": "600"
+    }
+  ],
+
+  "flagPos": "1600"
+}
