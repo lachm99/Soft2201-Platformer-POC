@@ -1,5 +1,6 @@
 package stickman.model.stage;
 
+import stickman.model.entity.Bullet;
 import stickman.model.entity.Entity;
 import stickman.model.entity.Hero;
 import stickman.view.background.BackgroundItem;
@@ -28,9 +29,14 @@ public abstract class Level {
     }
 
     public void tick() {
+        hero.getCollisionHandler().resetCollisionFlags();
+        hero.applyGrav(gravity);
         for (Entity e : this.entities) {
+            hero.checkHandleCollision(e);
             e.tick();
         }
+        hero.tick();
+
     }
 
     public List<Entity> getEntities() {
@@ -39,7 +45,6 @@ public abstract class Level {
 
     public void setHero(Hero hero) {
         this.hero = hero;
-        this.entities.add(hero);
     }
 
     public Hero getHero() {
@@ -48,7 +53,6 @@ public abstract class Level {
 
     public void setFlag(Entity flag) {
         this.flag = flag;
-        this.entities.add(flag);
     }
 
     public Entity getFlag() {
@@ -89,5 +93,24 @@ public abstract class Level {
 
     public void stopMoving() {
         this.getHero().stopMoving();
+    }
+
+    public boolean heroJump() {
+        if (getHero().getCollisionHandler().getCollisionFlagY() == 1) {
+            getHero().setYVel( -(15 + getHero().getSizeMult()) * gravity);
+            getHero().getCollisionHandler().setCollisionFlagY(0);
+            return true;
+        }
+        return false;
+
+    }
+
+    public boolean heroShoot() {
+        if (getHero().canShoot()) {
+            System.out.println("Shoot!");
+            this.entities.add(new Bullet(getHero()));
+            return true;
+        }
+        return false;
     }
 }

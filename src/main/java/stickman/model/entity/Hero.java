@@ -7,10 +7,11 @@ import stickman.view.animation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Hero implements VelocityEntity, AnimatedEntity {
+public class Hero implements VelocityEntity, AnimatedEntity, GravityEntity, CollisionEntity, ShooterEntity {
     private Map<String, AnimationState> animationStates;
     private String animationState;
     private ImageView imgView;
+    private double sizeMult;
 
     private double width;
     private double height;
@@ -19,28 +20,58 @@ public class Hero implements VelocityEntity, AnimatedEntity {
     private double yPos;
     private double xVel;
     private double yVel;
+    private int dir;
 
-    private CollisionHandler collisionHandler;
+    private boolean canShoot;
+
+    private CollisionHandler colHand;
+    private boolean solid = true;
 
 
     public Hero() {
-        initAnimationStates("Hero");
-        this.collisionHandler = new CollisionHandler(this);
+        this.imgView = new ImageView();
+        this.colHand = new CollisionHandler(this);
+        this.canShoot = true;
+        this.dir = 1;
+    }
+
+    public void setSize(String size) {
+        if (size.equalsIgnoreCase("large")) {
+            this.sizeMult = 4;
+        } else if (size.equalsIgnoreCase("tiny")) {
+            this.sizeMult = 1;
+        } else {
+            this.sizeMult = 2;
+        }
+        this.imgView.setFitHeight(sizeMult * this.imgView.getViewport().getHeight());
+        this.imgView.setFitWidth(sizeMult * this.imgView.getViewport().getWidth());
+
+        this.height = this.imgView.getFitHeight();
+        this.width = this.imgView.getFitWidth();
+    }
+
+    public double getSizeMult() {
+        return this.sizeMult;
     }
 
     @Override
-    public void initAnimationStates(String assetDir) {
+    public void initAnimationStates() {
         this.animationStates = new HashMap<>();
         this.animationStates.put("Idle_Right", new IdleRight("Hero"));
         this.animationStates.put("Idle_Left", new IdleLeft("Hero"));
         this.animationStates.put("Walk_Right", new WalkRight("Hero"));
         this.animationStates.put("Walk_Left", new WalkLeft("Hero"));
         this.setState("Idle_Right");
-        this.imgView = new ImageView();
+        this.animationStates.get(this.animationState).update(imgView);
     }
 
     @Override
     public void setXVel(double xVel) {
+        if (xVel < 0) {
+            this.dir = -1;
+        } else if (xVel > 0) {
+            this.dir = 1;
+        }
         this.xVel = xVel;
     }
 
@@ -61,7 +92,22 @@ public class Hero implements VelocityEntity, AnimatedEntity {
 
     @Override
     public void tick() {
-        this.setX(this.getX() + this.xVel);
+        this.updateX();
+        this.updateY();
+    }
+
+    private void updateX() {
+        if (Math.signum(colHand.getCollisionFlagX()) != Math.signum(this.xVel)) {
+            this.xPos += this.xVel;
+        }
+    }
+
+    private void updateY() {
+        if (Math.signum(colHand.getCollisionFlagY()) != Math.signum(this.yVel)) {
+            this.yPos += this.yVel;
+        } else {
+            this.yVel = 0;
+        }
     }
 
     @Override
@@ -123,10 +169,11 @@ public class Hero implements VelocityEntity, AnimatedEntity {
     }
 
     @Override
-    public void updateImg(double viewportOffset) {
+    public boolean updateImg(double viewportOffset) {
         this.animationStates.get(this.animationState).update(imgView);
         imgView.setX(this.xPos - viewportOffset);
         imgView.setY(this.yPos);
+        return true;
     }
 
     public void moveLeft() {
@@ -148,4 +195,45 @@ public class Hero implements VelocityEntity, AnimatedEntity {
         this.setXVel(0);
     }
 
+    @Override
+    public void applyGrav(double gravity) {
+        this.yVel += gravity;
+    }
+
+    @Override
+    public void checkHandleCollision(Entity e) {
+        if (!this.equals(e)) {
+            colHand.updateIntersectX(e);
+            colHand.updateIntersectY(e);
+        }
+    }
+
+    @Override
+    public CollisionHandler getCollisionHandler() {
+        return this.colHand;
+    }
+
+    @Override
+    public boolean getSolid() {
+        return this.solid;
+    }
+
+    @Override
+    public void enableShooting() {
+        this.canShoot = true;
+    }
+
+    @Override
+    public void disableShooting() {
+        this.canShoot = false;
+    }
+
+    @Override
+    public boolean canShoot() {
+        return this.canShoot;
+    }
+
+    public int getDir() {
+        return this.dir;
+    }
 }

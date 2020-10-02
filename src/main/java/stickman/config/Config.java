@@ -11,6 +11,7 @@ public class Config {
     private List<Integer> mushroomsX;
     private List<Integer> platformsX;
     private List<Integer> platformsY;
+    private List<Integer> platformsLength;
     private List<Integer> enemiesX;
     private List<String> enemiesType;
 
@@ -26,6 +27,7 @@ public class Config {
         this.flagX = j.getFlagX();
         this.mushroomsX = j.getMushroomsX();
         this.platformsX = j.getPlatformsX();
+        this.platformsLength = j.getPlatformsLength();
         this.platformsY = j.getPlatformsY();
         this.enemiesX = j.getEnemiesX();
         this.enemiesType = j.getEnemiesType();
@@ -62,6 +64,10 @@ public class Config {
 
     public List<Integer> getPlatformsY() {
         return platformsY;
+    }
+
+    public List<Integer> getPlatformsLength() {
+        return platformsLength;
     }
 
     public List<Integer> getEnemiesX() {

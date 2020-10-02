@@ -17,7 +17,11 @@ public class IdleRight extends AnimationState {
 
     @Override
     public void updateSpriteFrame(ImageView imgView) {
-        if (imgView.getImage() == null || !imgView.getImage().equals(this.spriteStrip)) {
+        if (imgView.getImage() == null) {
+            imgView.setScaleX(1);
+            imgView.setImage(this.spriteStrip);
+            this.index = 0;
+        } else if (!imgView.getImage().equals(this.spriteStrip)) {
             imgView.setScaleX(1);
             imgView.setImage(this.spriteStrip);
             this.index = 0;

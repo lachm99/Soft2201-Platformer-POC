@@ -18,11 +18,11 @@ public abstract class AnimationState {
     }
 
     public void update(ImageView imgView) {
-        tickCount++;
         if (tickCount % 3 == 0) {
             this.index ++;
             updateSpriteFrame(imgView);
         }
+        tickCount++;
     }
 
     public abstract void updateSpriteFrame(ImageView imgView);

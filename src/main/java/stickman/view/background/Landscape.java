@@ -37,7 +37,7 @@ public class Landscape implements BackgroundItem{
         this.trees_3.setY(l.getHeight() - mountains.getFitHeight());
         this.trees_3.setViewOrder(960);
 
-        this.parallax = 1;
+        this.parallax = 0.95;
 
     }
 
@@ -51,6 +51,6 @@ public class Landscape implements BackgroundItem{
         this.mountains.setX(-(viewportOffset * 0.2*parallax));
         this.trees_1.setX(-(viewportOffset * 0.6*parallax));
         this.trees_2.setX(-(viewportOffset * 0.8*parallax));
-        this.trees_3.setX(-(viewportOffset * 1*parallax));
+        this.trees_3.setX(-(viewportOffset * 0.95*parallax));
     }
 }

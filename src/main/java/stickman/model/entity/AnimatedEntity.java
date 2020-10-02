@@ -5,10 +5,14 @@ import stickman.view.animation.AnimationState;
 
 public interface AnimatedEntity extends Entity{
 
-    void initAnimationStates(String assetDir);
+    void initAnimationStates();
 
     AnimationState getState();
 
     void setState(String key);
+
+    void setSize(String size);
+
+    double getSizeMult();
 
 }

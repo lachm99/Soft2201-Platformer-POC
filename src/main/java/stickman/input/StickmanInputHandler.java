@@ -41,10 +41,10 @@ public class StickmanInputHandler implements KeyboardInputHandler{
                 this.right = true;
                 break;
             case UP:
-                // engine.getCurrentLevel().heroJump();
+                engine.getCurrentLevel().heroJump();
                 return;
             case SPACE:
-                // engine.getCurrentLevel().heroShoot();
+                engine.getCurrentLevel().heroShoot();
                 return;
             default:
                 return;

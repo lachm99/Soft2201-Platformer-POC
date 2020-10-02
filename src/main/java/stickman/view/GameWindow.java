@@ -10,6 +10,8 @@ import stickman.model.GameEngine;
 import stickman.model.entity.Entity;
 import stickman.view.background.BackgroundItem;
 
+import java.util.List;
+
 public class GameWindow {
     private GameEngine engine;
     private Stage stage;
@@ -68,6 +70,8 @@ public class GameWindow {
         for (Entity e : engine.getCurrentLevel().getEntities()) {
             e.drawImg(0, this.pane);
         }
+        engine.getCurrentLevel().getHero().drawImg(viewportOffset, pane);
+
 
     }
 
@@ -98,9 +102,18 @@ public class GameWindow {
         for (BackgroundItem bg : engine.getCurrentLevel().getBackground()) {
             bg.update(viewportOffset);
         }
-        for (Entity e: engine.getCurrentLevel().getEntities()) {
-            e.updateImg(viewportOffset);
+        for (Entity e: List.copyOf(engine.getCurrentLevel().getEntities())) {
+            // Delete entities that have exited the stage bounds
+            if (e.getX() > engine.getCurrentLevel().getWidth() + e.getWidth() || e.getX() < - Math.abs(e.getWidth())) {
+                engine.getCurrentLevel().getEntities().remove(e);
+                continue;
+            }
+            // Update the images- and if that fails, draw them first.
+            if (!e.updateImg(viewportOffset)) {
+                e.drawImg(viewportOffset, pane);
+            }
         }
+        engine.getCurrentLevel().getHero().updateImg(viewportOffset);
     }
 
     private void updateViewportOffset() {

@@ -4,26 +4,28 @@ import javafx.scene.layout.Pane;
 
 public interface Entity {
 
-    public double getX();
+    double getX();
 
-    public double getY();
+    double getY();
 
-    public double getWidth();
+    double getWidth();
 
-    public double getHeight();
+    double getHeight();
 
-    public void setX(double xPos);
+    void setX(double xPos);
 
-    public void setY(double yPos);
+    void setY(double yPos);
 
-    public void setWidth(double width);
+    void setWidth(double width);
 
-    public void setHeight(double height);
+    void setHeight(double height);
 
-    public void drawImg(double viewportOffset, Pane pane);
+    void drawImg(double viewportOffset, Pane pane);
 
-    public void updateImg(double viewportOffset);
+    boolean updateImg(double viewportOffset);
 
-    public void tick();
+    boolean getSolid();
+
+    void tick();
 
 }

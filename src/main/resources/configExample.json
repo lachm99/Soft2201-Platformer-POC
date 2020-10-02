@@ -6,15 +6,18 @@
   "platformsPos": [
     {
       "xPos": "150",
-      "yPos": "200"
+      "yPos": "200",
+      "length": "256"
     },
     {
       "xPos": "512",
-      "yPos": "300"
+      "yPos": "300",
+      "length": "512"
     },
     {
-      "xPos": "770",
-      "yPos": "256"
+      "xPos": "1200",
+      "yPos": "232",
+      "length": "256"
     }
   ],
 

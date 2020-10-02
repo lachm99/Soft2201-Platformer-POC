@@ -102,6 +102,17 @@ public class JsonReader implements ConfigReader {
     }
 
     @Override
+    public List<Integer> getPlatformsLength() {
+        List<Integer> platformsLength = new ArrayList<Integer>();
+        for (Object pObj : platformsPos) {
+            JSONObject p = (JSONObject) pObj;
+            platformsLength.add(Integer.parseInt((String) p.get("length")));
+        }
+        return platformsLength;
+    }
+
+
+    @Override
     public List<Integer> getEnemiesX() {
         List<Integer> enemiesX = new ArrayList<Integer>();
         for (Object eObj : enemies) {

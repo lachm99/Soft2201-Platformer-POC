@@ -22,6 +22,8 @@ public interface ConfigReader {
 
     List<Integer> getPlatformsY();
 
+    List<Integer> getPlatformsLength();
+
     List<Integer> getEnemiesX();
 
     List<String> getEnemiesType();
