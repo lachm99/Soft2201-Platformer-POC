@@ -3,7 +3,6 @@ package stickman.view.background;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import stickman.model.stage.Level;
-import stickman.view.GameWindow;
 
 public class Landscape implements BackgroundItem{
     private ImageView mountains;
@@ -48,7 +47,7 @@ public class Landscape implements BackgroundItem{
     }
 
     @Override
-    public void update(int viewportOffset) {
+    public void update(double viewportOffset) {
         this.mountains.setX(-(viewportOffset * 0.2*parallax));
         this.trees_1.setX(-(viewportOffset * 0.6*parallax));
         this.trees_2.setX(-(viewportOffset * 0.8*parallax));

@@ -1,6 +1,8 @@
 package stickman.model.stage;
 
 import stickman.config.Config;
+import stickman.model.entity.Hero;
+import stickman.view.background.Landscape;
 
 public class FirstLevelFactory implements LevelFactory {
     private Level l;
@@ -19,6 +21,11 @@ public class FirstLevelFactory implements LevelFactory {
 
     @Override
     public void makePreset() {
+        l.getBackground().add(new Landscape(this.l));
+
+        Hero h = new Hero();
+        h.setX(64);
+        l.setHero(new Hero());
     }
 
     @Override

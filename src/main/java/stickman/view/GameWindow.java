@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import stickman.input.KeyboardInputHandler;
 import stickman.model.GameEngine;
+import stickman.view.background.BackgroundItem;
 
 public class GameWindow {
     private GameEngine engine;
@@ -15,6 +16,10 @@ public class GameWindow {
     private Pane pane;
     private double width;
     private double height;
+
+    private double viewportOffset = 0.0;
+    private static final double VIEWPORT_MARGIN = 280.0;
+
 
     /**
      * Constructs a new GameWindow
@@ -55,10 +60,10 @@ public class GameWindow {
         this.stage.getScene().setOnKeyPressed(engine.getInputHandler()::handlePressed);
         this.stage.getScene().setOnKeyReleased(engine.getInputHandler()::handleReleased);
 
-
-        // Initialise the background onto the pane
-        engine.getCurrentLevel().getBackground().get(0).draw(pane);
-
+        // Initialise background items onto the pane
+        for (BackgroundItem bg : engine.getCurrentLevel().getBackground()) {
+            bg.draw(this.pane);
+        }
     }
 
     /**
@@ -83,6 +88,31 @@ public class GameWindow {
     }
 
     private void render(GameEngine engine) {
+        updateViewportOffset();
+
+        for (BackgroundItem bg : engine.getCurrentLevel().getBackground()) {
+            bg.update(viewportOffset);
+        }
+
+
+    }
+
+    private void updateViewportOffset() {
+        double heroStageX = engine.getCurrentLevel().getHero().getX();
+        double heroWindowX = heroStageX - viewportOffset;
+
+        if (heroWindowX < VIEWPORT_MARGIN) {
+            if (viewportOffset >= 0) { // Don't go further left than the start of the level
+                viewportOffset -= VIEWPORT_MARGIN - heroWindowX;
+                if (viewportOffset < 0) {
+                    viewportOffset = 0;
+                }
+            }
+        } else if (heroWindowX > width - VIEWPORT_MARGIN) { // Increase offset, until edge of window is edge of stage.
+            if (heroStageX < engine.getCurrentLevel().getWidth() - VIEWPORT_MARGIN) {
+                viewportOffset += heroWindowX - (width - VIEWPORT_MARGIN);
+            }
+        }
     }
 
     public Pane getPane() {
