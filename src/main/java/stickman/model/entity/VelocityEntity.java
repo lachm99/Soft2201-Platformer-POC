@@ -1,6 +1,6 @@
 package stickman.model.entity;
 
-public interface VelocityEntity {
+public interface VelocityEntity extends Entity {
     void setXVel(double xVel);
 
     double getXVel();
@@ -8,4 +8,6 @@ public interface VelocityEntity {
     void setYVel(double yVel);
 
     double getYVel();
+
+    void tick();
 }

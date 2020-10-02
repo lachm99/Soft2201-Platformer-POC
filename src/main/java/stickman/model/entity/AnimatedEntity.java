@@ -1,8 +1,9 @@
 package stickman.model.entity;
 
+import javafx.scene.image.ImageView;
 import stickman.view.animation.AnimationState;
 
-public interface AnimatedEntity {
+public interface AnimatedEntity extends Entity{
 
     void initAnimationStates(String assetDir);
 
@@ -10,5 +11,4 @@ public interface AnimatedEntity {
 
     void setState(String key);
 
-    void animate();
 }

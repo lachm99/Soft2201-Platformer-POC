@@ -48,6 +48,6 @@ public class StickmanEngine implements GameEngine {
 
     @Override
     public void tick() {
-
+        this.currentLevel.tick();
     }
 }

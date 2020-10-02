@@ -17,6 +17,8 @@ public class FirstLevelFactory implements LevelFactory {
 
     @Override
     public void makeFromConfig(Config config) {
+        // For the moment, ignore config
+        this.makePreset();
     }
 
     @Override
@@ -25,7 +27,8 @@ public class FirstLevelFactory implements LevelFactory {
 
         Hero h = new Hero();
         h.setX(64);
-        l.setHero(new Hero());
+        h.setY(200);
+        l.setHero(h);
     }
 
     @Override

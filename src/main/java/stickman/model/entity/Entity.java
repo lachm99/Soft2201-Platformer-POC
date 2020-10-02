@@ -1,40 +1,29 @@
 package stickman.model.entity;
 
-public abstract class Entity {
-    protected double xPos;
-    protected double yPos;
-    protected double width;
-    protected double height;
+import javafx.scene.layout.Pane;
 
-    public double getX() {
-        return this.xPos;
-    }
+public interface Entity {
 
-    public double getY() {
-        return this.yPos;
-    }
+    public double getX();
 
-    public double getWidth() {
-        return this.width;
-    }
+    public double getY();
 
-    public double getHeight() {
-        return this.height;
-    }
+    public double getWidth();
 
-    public void setX(double xPos) {
-        this.xPos = xPos;
-    }
+    public double getHeight();
 
-    public void setY(double yPos) {
-        this.yPos = yPos;
-    }
+    public void setX(double xPos);
 
-    public void setWidth(double width) {
-        this.width = width;
-    }
+    public void setY(double yPos);
 
-    public void setHeight(double height) {
-        this.height = height;
-    }
+    public void setWidth(double width);
+
+    public void setHeight(double height);
+
+    public void drawImg(double viewportOffset, Pane pane);
+
+    public void updateImg(double viewportOffset);
+
+    public void tick();
+
 }

@@ -23,10 +23,15 @@ public abstract class Level {
         this.width = width;
         this.height = height;
         this.floorHeight = floorHeight;
-        this.background = new ArrayList<BackgroundItem>();
+        this.background = new ArrayList<>();
+        this.entities = new ArrayList<>();
     }
 
-    public abstract void tick();
+    public void tick() {
+        for (Entity e : this.entities) {
+            e.tick();
+        }
+    }
 
     public List<Entity> getEntities() {
         return this.entities;
@@ -34,10 +39,20 @@ public abstract class Level {
 
     public void setHero(Hero hero) {
         this.hero = hero;
+        this.entities.add(hero);
     }
 
     public Hero getHero() {
         return this.hero;
+    }
+
+    public void setFlag(Entity flag) {
+        this.flag = flag;
+        this.entities.add(flag);
+    }
+
+    public Entity getFlag() {
+        return this.flag;
     }
 
     public double getHeight() {
@@ -64,4 +79,15 @@ public abstract class Level {
         return this.background;
     }
 
+    public void moveRight() {
+        this.getHero().moveRight();
+    }
+
+    public void moveLeft() {
+        this.getHero().moveLeft();
+    }
+
+    public void stopMoving() {
+        this.getHero().stopMoving();
+    }
 }

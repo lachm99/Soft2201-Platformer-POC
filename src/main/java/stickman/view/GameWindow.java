@@ -6,8 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import stickman.input.KeyboardInputHandler;
 import stickman.model.GameEngine;
+import stickman.model.entity.Entity;
 import stickman.view.background.BackgroundItem;
 
 public class GameWindow {
@@ -64,6 +64,11 @@ public class GameWindow {
         for (BackgroundItem bg : engine.getCurrentLevel().getBackground()) {
             bg.draw(this.pane);
         }
+
+        for (Entity e : engine.getCurrentLevel().getEntities()) {
+            e.drawImg(0, this.pane);
+        }
+
     }
 
     /**
@@ -93,8 +98,9 @@ public class GameWindow {
         for (BackgroundItem bg : engine.getCurrentLevel().getBackground()) {
             bg.update(viewportOffset);
         }
-
-
+        for (Entity e: engine.getCurrentLevel().getEntities()) {
+            e.updateImg(viewportOffset);
+        }
     }
 
     private void updateViewportOffset() {

@@ -8,8 +8,4 @@ public class FirstLevel extends Level {
         super(width, height, floorHeight);
     }
 
-    @Override
-    public void tick() {
-
-    }
 }
