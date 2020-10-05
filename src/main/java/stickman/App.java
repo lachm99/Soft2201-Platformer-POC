@@ -8,6 +8,7 @@ import stickman.view.GameWindow;
 
 public class App extends Application {
     private final double WINDOW_WIDTH = 800;
+    private final double WINDOW_HEIGHT = 600;
 
     public static void main(String[] args)
     {
@@ -22,7 +23,7 @@ public class App extends Application {
         window.assignEngine(engine);
         window.assignStage(primaryStage);
 
-        window.setup(WINDOW_WIDTH);
+        window.setup(WINDOW_WIDTH, WINDOW_HEIGHT);
 
         window.run();
     }

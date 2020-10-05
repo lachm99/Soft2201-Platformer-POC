@@ -7,10 +7,17 @@ public interface GameEngine {
 
     void tick();
 
+    void initLevel();
+
     String getGameTitle();
 
     KeyboardInputHandler getInputHandler();
 
     Level getCurrentLevel();
 
+    int getEndState();
+
+    boolean toReset();
+
+    void setToReset();
 }

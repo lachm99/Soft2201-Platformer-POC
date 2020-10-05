@@ -9,5 +9,5 @@ public interface VelocityEntity extends Entity {
 
     double getYVel();
 
-    void tick();
+    void tick(double gravity);
 }

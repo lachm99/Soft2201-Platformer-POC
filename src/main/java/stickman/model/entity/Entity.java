@@ -1,6 +1,8 @@
 package stickman.model.entity;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.Pane;
+import stickman.model.entity.collisions.CollisionHandler;
 
 public interface Entity {
 
@@ -20,12 +22,20 @@ public interface Entity {
 
     void setHeight(double height);
 
-    void drawImg(double viewportOffset, Pane pane);
+    void drawImg(double xViewportOffset, double yViewportOffset, Pane pane);
 
-    boolean updateImg(double viewportOffset);
+    boolean updateImg(double xViewportOffset, double yViewportOffset);
 
-    boolean getSolid();
+    void clearView(Pane pane);
 
-    void tick();
+    void tick(double gravity);
+
+    Rectangle2D getBounds();
+
+    CollisionHandler getCollisionHandler();
+
+    void delete();
+
+    boolean toDelete();
 
 }

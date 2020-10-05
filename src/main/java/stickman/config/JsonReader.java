@@ -18,6 +18,8 @@ public class JsonReader implements ConfigReader {
     private JSONArray platformsPos;
     private JSONArray mushroomsPos;
     private JSONArray enemies;
+    private JSONArray flagPos;
+
 
     public JsonReader(String filePath) {
         success = false;
@@ -31,6 +33,7 @@ public class JsonReader implements ConfigReader {
             this.platformsPos = (JSONArray) configJson.get("platformsPos");
             this.mushroomsPos = (JSONArray) configJson.get("mushroomsPos");
             this.enemies = (JSONArray) configJson.get("enemies");
+            this.flagPos = (JSONArray) configJson.get("flagPos");
 
             success = true;
         } catch (FileNotFoundException e) {
@@ -53,6 +56,16 @@ public class JsonReader implements ConfigReader {
     }
 
     @Override
+    public int getMapHeight() {
+        return Integer.parseInt((String) configJson.get("mapHeight"));
+    }
+
+    @Override
+    public int getFloorHeight() {
+        return Integer.parseInt((String) configJson.get("floorHeight"));
+    }
+
+    @Override
     public int getHeroXPos() {
         return Integer.parseInt((String) heroPos.get(0));
     }
@@ -69,8 +82,14 @@ public class JsonReader implements ConfigReader {
 
     @Override
     public int getFlagX() {
-        return Integer.parseInt((String) configJson.get("flagPos"));
+        return Integer.parseInt((String) flagPos.get(0));
     }
+
+    @Override
+    public int getFlagY() {
+        return Integer.parseInt((String) flagPos.get(1));
+    }
+
 
     @Override
     public List<Integer> getMushroomsX() {

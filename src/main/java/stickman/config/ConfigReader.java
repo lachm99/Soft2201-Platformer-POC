@@ -6,6 +6,10 @@ public interface ConfigReader {
 
     boolean wasSuccessful();
 
+    int getMapHeight();
+
+    int getFloorHeight();
+
     String getHeroSize();
 
     int getHeroXPos();
@@ -15,6 +19,8 @@ public interface ConfigReader {
     double getCloudVelocity();
 
     int getFlagX();
+
+    int getFlagY();
 
     List<Integer> getMushroomsX();
 

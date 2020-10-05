@@ -1,6 +1,9 @@
 package stickman.model.entity;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.Pane;
+import stickman.model.entity.collisions.CollisionHandler;
+import stickman.model.entity.collisions.SurfaceCollisionHandler;
 
 public class Barrier implements Entity {
     private double width;
@@ -9,13 +12,16 @@ public class Barrier implements Entity {
     private double xPos;
     private double yPos;
 
-    private boolean solid = true;
+    private CollisionHandler colHand;
+    private boolean toDelete;
+
 
     public Barrier(double xPos, double yPos, double width, double height) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
         this.height = height;
+        this.colHand = new SurfaceCollisionHandler(this);
     }
 
     @Override
@@ -59,23 +65,47 @@ public class Barrier implements Entity {
     }
 
     @Override
-    public void drawImg(double viewportOffset, Pane pane) {
-        // invisible! do not draw
+    public void drawImg(double xViewportOffset, double yViewportOffset, Pane pane) {
+        // Invisible
     }
 
     @Override
-    public boolean updateImg(double viewportOffset) {
-        // Invisible!
+    public boolean updateImg(double xViewportOffset, double yViewportOffset) {
+        // INvisible
         return true;
     }
+    @Override
+    public void clearView(Pane pane) {
+        // Invisible - nothing to clear!
+    }
+
 
     @Override
-    public void tick() {
+    public void tick(double gravity) {
         // Static - does not do anything.
     }
 
     @Override
-    public boolean getSolid() {
-        return this.solid;
+    public Rectangle2D getBounds() {
+        return new Rectangle2D(this.xPos, this.yPos, this.width, this.height);
     }
+
+    @Override
+    public CollisionHandler getCollisionHandler() {
+        return colHand;
+    }
+
+
+
+    @Override
+    public void delete() {
+        this.toDelete = true;
+    }
+
+    @Override
+    public boolean toDelete() {
+        return this.toDelete;
+    }
+
+
 }

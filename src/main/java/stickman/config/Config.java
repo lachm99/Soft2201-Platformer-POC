@@ -4,10 +4,13 @@ import java.util.List;
 
 public class Config {
     private String heroSize;
+    private int mapHeight;
+    private int floorHeight;
     private int heroXPos;
     private int heroYPos;
     private double cloudVelocity;
     private int flagX;
+    private int flagY;
     private List<Integer> mushroomsX;
     private List<Integer> platformsX;
     private List<Integer> platformsY;
@@ -21,10 +24,13 @@ public class Config {
             return false;
         }
         this.heroSize = j.getHeroSize();
+        this.mapHeight = j.getMapHeight();
+        this.floorHeight = j.getFloorHeight();
         this.heroXPos = j.getHeroXPos();
         this.heroYPos = j.getHeroYPos();
         this.cloudVelocity = j.getCloudVelocity();
         this.flagX = j.getFlagX();
+        this.flagY = j.getFlagY();
         this.mushroomsX = j.getMushroomsX();
         this.platformsX = j.getPlatformsX();
         this.platformsLength = j.getPlatformsLength();
@@ -36,6 +42,14 @@ public class Config {
 
     public String getHeroSize() {
         return heroSize;
+    }
+
+    public int getMapHeight() {
+        return this.mapHeight;
+    }
+
+    public int getFloorHeight() {
+        return this.floorHeight;
     }
 
     public int getHeroXPos() {
@@ -52,6 +66,10 @@ public class Config {
 
     public int getFlagX() {
         return flagX;
+    }
+
+    public int getFlagY() {
+        return flagY;
     }
 
     public List<Integer> getMushroomsX() {

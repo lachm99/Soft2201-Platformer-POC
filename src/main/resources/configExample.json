@@ -1,23 +1,39 @@
 {
   "heroSize": "normal",
-  "heroPos": ["128","128"],
+  "mapHeight": "1000",
+  "floorHeight": "50",
+  "heroPos": ["30","60"],
   "cloudVelocity": "0",
-
   "platformsPos": [
     {
-      "xPos": "150",
-      "yPos": "200",
-      "length": "256"
-    },
-    {
-      "xPos": "512",
+      "xPos": "200",
       "yPos": "300",
-      "length": "512"
+      "length": "200"
     },
     {
-      "xPos": "1200",
-      "yPos": "232",
-      "length": "256"
+      "xPos": "500",
+      "yPos": "300",
+      "length": "300"
+    },
+    {
+      "xPos": "900",
+      "yPos": "300",
+      "length": "100"
+    },
+    {
+      "xPos": "1100",
+      "yPos": "300",
+      "length": "200"
+    },
+    {
+      "xPos": "400",
+      "yPos": "550",
+      "length": "100"
+    },
+    {
+      "xPos": "800",
+      "yPos": "550",
+      "length": "100"
     }
   ],
 
@@ -25,10 +41,17 @@
 
   "enemies": [
     {
-      "type": "standard",
-      "xPos": "600"
+      "type": "blue",
+      "xPos": "1200"
+    },
+    {
+      "type": "red",
+      "xPos": "200"
+    },
+    {
+      "type": "blue",
+      "xPos": "500"
     }
   ],
-
-  "flagPos": "1600"
+  "flagPos": ["675", "300"]
 }

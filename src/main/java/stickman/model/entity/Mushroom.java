@@ -1,32 +1,38 @@
 package stickman.model.entity;
 
+import javafx.geometry.Rectangle2D;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
+import stickman.model.entity.collisions.CollisionHandler;
+import stickman.model.entity.collisions.MushroomCollisionHandler;
 
 public class Mushroom implements Entity {
-    private Rectangle view;
+    private ImageView view;
 
     private double xPos;
     private double yPos;
-    private double WIDTH = 32;
-    private double HEIGHT = 32;
+    private double width = 32;
+    private double height = 32;
 
-    private boolean solid = false;
+    private boolean toDelete;
+
+    private CollisionHandler colHand;
 
 
     public Mushroom(double xPos, double yPos) {
         this.xPos = xPos;
-        this.yPos = yPos - HEIGHT; // Account for mushroom size offset from floor
+        this.yPos = yPos - height; // Account for mushroom size offset from floor
 
-        this.view = new Rectangle(xPos, this.yPos, WIDTH, HEIGHT);
-        this.view.setFill(Paint.valueOf("CORNFLOWERBLUE"));
-        this.view.setOpacity(0.6);
-        this.view.setViewOrder(50);
+        this.view = new ImageView("Mushroom.png");
+        this.view.setViewOrder(90);
+        this.view.setX(this.xPos);
+        this.view.setY(this.yPos);
+
+        this.colHand = new MushroomCollisionHandler(this);
     }
 
     @Override
-    public void tick() {
+    public void tick(double gravity) {
         // Do nothing!
     }
 
@@ -42,12 +48,12 @@ public class Mushroom implements Entity {
 
     @Override
     public double getWidth() {
-        return this.WIDTH;
+        return this.width;
     }
 
     @Override
     public double getHeight() {
-        return this.HEIGHT;
+        return this.height;
     }
 
     @Override
@@ -62,28 +68,47 @@ public class Mushroom implements Entity {
 
     @Override
     public void setWidth(double width) {
-        this.WIDTH = width;
+        this.width = width;
     }
 
     @Override
     public void setHeight(double height) {
-        this.HEIGHT = height;
+        this.height = height;
     }
 
     @Override
-    public void drawImg(double viewportOffset, Pane pane) {
+    public void drawImg(double xViewportOffset, double yViewportOffset, Pane pane) {
         pane.getChildren().add(view);
     }
 
     @Override
-    public boolean updateImg(double viewportOffset) {
-        view.setTranslateX(-viewportOffset);
+    public boolean updateImg(double xViewportOffset, double yViewportOffset) {
+        view.setTranslateX(-xViewportOffset);
+        view.setTranslateY(-yViewportOffset);
         return true;
     }
 
     @Override
-    public boolean getSolid() {
-        return this.solid;
+    public void clearView(Pane pane) {
+        pane.getChildren().remove(this.view);
+    }
+
+    @Override
+    public Rectangle2D getBounds() {
+        return new Rectangle2D(this.xPos, this.yPos, this.width, this.height);
+    }
+
+    @Override
+    public CollisionHandler getCollisionHandler() {
+        return colHand;
+    }
+
+    public void delete() {
+        this.toDelete = true;
+    }
+
+    public boolean toDelete() {
+        return this.toDelete;
     }
 }
 

@@ -1,13 +1,16 @@
 package stickman.model.entity;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import stickman.model.entity.collisions.BulletCollisionHandler;
+import stickman.model.entity.collisions.CollisionHandler;
 
 public class Bullet implements VelocityEntity {
     private Rectangle view;
-    private double width = 16;
-    private double height = 16;
+    private double width;
+    private double height;
 
     private double xPos;
     private double yPos;
@@ -19,10 +22,15 @@ public class Bullet implements VelocityEntity {
 
     private boolean drawn;
 
-    private boolean solid = true;
+    private boolean toDelete;
+
+    private CollisionHandler colHand;
 
 
     public Bullet(Hero h) {
+        width = h.getWidth()/4;
+        height = h.getHeight()/6;
+
         if (h.getDir() > 0) {
             this.xVel = 8;
             this.xPos = h.getX() + h.getWidth();
@@ -30,12 +38,13 @@ public class Bullet implements VelocityEntity {
             this.xVel = -8;
             this.xPos = h.getX() - width;
         }
-        yPos = h.getY() + h.getHeight()/3;
+        yPos = h.getY() + h.getHeight()/2;
         this.view = new Rectangle(xPos, yPos, width, height);
-        this.view.setOpacity(0.6);
-        this.view.setViewOrder(50);
-        this.view.setFill(Paint.valueOf("DARKSLATEBLUE"));
+        this.view.setOpacity(0.9);
+        this.view.setViewOrder(10);
+        this.view.setFill(Paint.valueOf("BLACK"));
         this.drawn = false;
+        this.colHand = new BulletCollisionHandler(this);
     }
 
 
@@ -60,7 +69,7 @@ public class Bullet implements VelocityEntity {
     }
 
     @Override
-    public void tick() {
+    public void tick(double gravity) {
         this.xPos += this.xVel;
     }
 
@@ -105,23 +114,45 @@ public class Bullet implements VelocityEntity {
     }
 
     @Override
-    public void drawImg(double viewportOffset, Pane pane) {
-        pane.getChildren().add(this.view);
+    public void drawImg(double xViewportOffset, double yViewportOffset, Pane pane) {
+        pane.getChildren().add(view);
     }
 
     @Override
-    public boolean updateImg(double viewportOffset) {
+    public boolean updateImg(double xViewportOffset, double yViewportOffset) {
         if (!drawn) {
             drawn = true;
             return false;
         }
-        view.setX(this.getX() - viewportOffset);
+        view.setX(this.getX() -xViewportOffset);
+        view.setTranslateY(-yViewportOffset);
         return true;
+    }
+
+    @Override
+    public void clearView(Pane pane) {
+        pane.getChildren().remove(this.view);
     }
 
 
     @Override
-    public boolean getSolid() {
-        return this.solid;
+    public Rectangle2D getBounds() {
+        return new Rectangle2D(this.xPos, this.yPos, this.width, this.height);
     }
+
+    @Override
+    public CollisionHandler getCollisionHandler() {
+        return colHand;
+    }
+
+    @Override
+    public void delete() {
+        this.toDelete = true;
+    }
+
+    @Override
+    public boolean toDelete() {
+        return this.toDelete;
+    }
+
 }
