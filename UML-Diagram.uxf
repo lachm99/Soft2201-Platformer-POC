@@ -1,0 +1,1275 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text/>
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>21</y>
+      <w>161</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>stickman::App
+--
+-WINDOW_WIDTH: double
+-WINDOW_HEIGHT: double
+--
++main(String[] args): void
++start(Stage primaryStage): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>133</y>
+      <w>168</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>Config
+--
+-heroSize: String
+-mapHeight: int
+-floorHeight: int
+-heroXPos: int
+-heroYPos: int
+-cloudVelocity: double
+-flagX: int
+-flagY: int
+-mushroomsX: List&lt;Integer&gt;
+-platformsX: List&lt;Integer&gt;
+-platformsY: List&lt;Integer&gt;
+-platformsLength: List&lt;Integer&gt;
+-enemiesX: List&lt;Integer&gt;
+-enemiesType: List&lt;String&gt;
+--
++readJson(String filePath): boolean
++getHeroSize(): String
++getMapHeight(): int
++getFloorHeight(): int
++getHeroXPos(): int
++getHeroYPos(): int
++getCloudVelocity(): double
++getFlagX(): int
++getFlagY(): int
++getMushroomsX(): List&lt;Integer&gt;
++getPlatformsX(): List&lt;Integer&gt;
++getPlatformsY(): List&lt;Integer&gt;
++getPlatformsLength(): List&lt;Integer&gt;
++getEnemiesX(): List&lt;Integer&gt;
++getEnemiesType(): List&lt;String&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>308</x>
+      <y>133</y>
+      <w>175</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+ConfigReader
+--
+--
+~wasSuccessful(): boolean
+~getMapHeight(): int
+~getFloorHeight(): int
+~getHeroSize(): String
+~getHeroXPos(): int
+~getHeroYPos(): int
+~getCloudVelocity(): double
+~getFlagX(): int
+~getFlagY(): int
+~getMushroomsX(): List&lt;Integer&gt;
+~getPlatformsX(): List&lt;Integer&gt;
+~getPlatformsY(): List&lt;Integer&gt;
+~getPlatformsLength(): List&lt;Integer&gt;
+~getEnemiesX(): List&lt;Integer&gt;
+~getEnemiesType(): List&lt;String&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>308</x>
+      <y>364</y>
+      <w>175</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>JsonReader
+--
+-success: boolean
+-configJson: JSONObject
+-heroPos: JSONArray
+-platformsPos: JSONArray
+-mushroomsPos: JSONArray
+-enemies: JSONArray
+-flagPos: JSONArray
+--
++JsonReader(String filePath): ctor
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>595</y>
+      <w>252</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+KeyboardInputHandler
+--
+--
++handlePressed(KeyEvent keyEvent): void
++handleReleased(KeyEvent keyEvent): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>686</y>
+      <w>252</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>StickmanInputHandler
+--
+-engine: GameEngine
+-left = false: boolean
+-right = false: boolean
+-pressedKeys = new HashSet(): Set&lt;KeyCode&gt;
+-sounds = new HashMap(): Map&lt;String, MediaPlayer&gt;
+--
++StickmanInputHandler(GameEngine engine): ctor
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>126</x>
+      <y>1274</y>
+      <w>182</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+AnimatedEntity
+--
+--
+~initAnimationStates(): void
+~getState(): AnimationState
+~setState(String key): void
+~setSize(String size): void
+~getSizeMult(): double
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>665</x>
+      <y>1162</y>
+      <w>315</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Barrier
+--
+-width: double
+-height: double
+-xPos: double
+-yPos: double
+-colHand: CollisionHandler
+-toDelete: boolean
+--
++Barrier(double xPos, double yPos, double width, double height): ctor
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>1722</y>
+      <w>280</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>BlueEnemy
+--
+--
++BlueEnemy(double xPos, double yPos, double sizeMult): ctor
++initAnimationStates(): void
+#updateY(double gravity): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>434</x>
+      <y>1442</y>
+      <w>140</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>Bullet
+--
+-view: Rectangle
+-width: double
+-height: double
+-xPos: double
+-yPos: double
+-xVel: double
+-yVel: double
+-dir: double
+-drawn: boolean
+-toDelete: boolean
+-colHand: CollisionHandler
+--
++Bullet(Hero h): ctor
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1239</x>
+      <y>1057</y>
+      <w>224</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>BulletCollisionHandler
+--
+-e: Entity
+-collisionFlagX: int
+-collisionFlagY: int
+-solid: boolean
+--
++BulletCollisionHandler(Entity e): ctor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1001</x>
+      <y>1057</y>
+      <w>224</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+CollisionHandler
+--
+--
+~getSolid(): boolean
+~getCollisionFlagX(): int
+~getCollisionFlagY(): int
+~setCollisionFlagX(int dir): void
+~setCollisionFlagY(int dir): void
+~resetCollisionFlags(): void
+~collidesWith(Entity e2): boolean
+~handleCollision(Entity e2): void
+~reactToCollision(Entity e2): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1001</x>
+      <y>1211</y>
+      <w>224</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>EnemyCollisionHandler
+--
+-e: Enemy
+-collisionFlagX: int
+-collisionFlagY: int
+-toCollideOnX: boolean
+-toCollideOnY: boolean
+-solid: boolean
+--
++EnemyCollisionHandler(Enemy e): ctor
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1001</x>
+      <y>1330</y>
+      <w>224</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>FlagCollisionHandler
+--
+-e: Flag
+-collisionFlagX: int
+-collisionFlagY: int
+-solid: boolean
+--
++ FlagCollisionHandler(Flag e): ctor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1001</x>
+      <y>1428</y>
+      <w>224</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>HeroCollisionHandler
+--
+-e: Hero
+-collisionFlagX: int
+-collisionFlagY: int
+-toCollideOnX: boolean
+-toCollideOnY: boolean
+-solid: boolean
+--
++HeroCollisionHandler(Hero e): ctor
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1239</x>
+      <y>1155</y>
+      <w>224</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>MushroomCollisionHandler
+--
+-e: Mushroom
+-collisionFlagX: int
+-collisionFlagY: int
+-solid: boolean
+--
++ MushroomCollisionHandler(Mushroom e): ctor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1001</x>
+      <y>1547</y>
+      <w>224</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>SurfaceCollisionHandler
+--
+-e: Entity
+-collisionFlagX: int
+-collisionFlagY: int
+-solid: boolean
+--
++SurfaceCollisionHandler(Entity e): ctor
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>1470</y>
+      <w>259</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>/&lt;&lt;Abstract&gt;&gt;/
+/Enemy/
+--
+#animationStates: Map&lt;String, AnimationState&gt;
+#animationState: String
+#imgView: ImageView
+#sizeMult: double
+#width: double
+#height: double
+#xPos: double
+#yPos: double
+#xVel: double
+#yVel: double
+#dir: int
+#colHand: CollisionHandler
+#toDelete: boolean
+--
++Enemy(double xPos, double yPos, double sizeMult): ctor
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>1036</y>
+      <w>350</w>
+      <h>217</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Entity
+--
+--
+~getX(): double
+~getY(): double
+~getWidth(): double
+~getHeight(): double
+~setX(double xPos): void
+~setY(double yPos): void
+~setWidth(double width): void
+~setHeight(double height): void
+~drawImg(double xViewportOffset, double yViewportOffset, Pane pane): void
+~updateImg(double xViewportOffset, double yViewportOffset): boolean
+~clearView(Pane pane): void
+~tick(double gravity): void
+~getBounds(): Rectangle2D
+~getCollisionHandler(): CollisionHandler
+~delete(): void
+~toDelete(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>1036</y>
+      <w>175</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>Flag
+--
+-view: ImageView
+-width: double
+-height: double
+-xPos: double
+-yPos: double
+-colHand: CollisionHandler
+-toDelete: boolean
+--
++Flag(double xPos, double yPos): ctor
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>595</x>
+      <y>1442</y>
+      <w>224</w>
+      <h>343</h>
+    </coordinates>
+    <panel_attributes>Hero
+--
+-animationStates: Map&lt;String, AnimationState&gt;
+-animationState: String
+-imgView: ImageView
+-sizeMult: double
+-width: double
+-height: double
+-xPos: double
+-yPos: double
+-xVel: double
+-yVel: double
+-dir: int
+-canShoot: boolean
+-winState: int
+-colHand: CollisionHandler
+-toDelete: boolean
+-toReset: boolean
+-hasWon: boolean
+--
++Hero(): ctor
+-updateX(): void
+-updateY(double gravity): void
++moveLeft(): void
++moveRight(): void
++stopMoving(): void
++getDir(): int
++setHasWon(boolean hasWon): void
++getHasWon(): boolean
++setToReset(boolean toReset): void
++getToReset(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>665</x>
+      <y>1036</y>
+      <w>315</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>Mushroom
+--
+-view: ImageView
+-xPos: double
+-yPos: double
+-width: double
+-height: double
+-toDelete: boolean
+-colHand: CollisionHandler
+--
++Mushroom(double xPos, double yPos): ctor
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>665</x>
+      <y>1274</y>
+      <w>315</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>Platform
+--
+-view: Rectangle
+-xPos: double
+-yPos: double
+-width: double
+-height: double
+-colHand: CollisionHandler
+-toDelete: boolean
+--
++Platform(double xPos, double yPos, double width, double height): ctor
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>308</x>
+      <y>1722</y>
+      <w>280</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>RedEnemy
+--
+--
++RedEnemy(double xPos, double yPos, double sizeMult): ctor
++initAnimationStates(): void
+#updateY(double gravity): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>490</x>
+      <y>1295</y>
+      <w>168</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+ShooterEntity
+--
+--
+~enableShooting(): void
+~disableShooting(): void
+~canShoot(): boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>315</x>
+      <y>1274</y>
+      <w>168</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+VelocityEntity
+--
+--
+~setXVel(double xVel): void
+~getXVel(): double
+~setYVel(double yVel): void
+~getYVel(): double
+~tick(double gravity): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>294</x>
+      <y>735</y>
+      <w>196</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+stickman.model::GameEngine
+--
+--
+~tick(): void
+~initLevel(): void
+~getGameTitle(): String
+~getInputHandler(): KeyboardInputHandler
+~getCurrentLevel(): Level
+~getEndState(): int
+~toReset(): boolean
+~setToReset(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>3241</y>
+      <w>273</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>FirstLevel
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>427</x>
+      <y>3017</y>
+      <w>182</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>FirstLevelFactory
+--
+- l: Level
+- WIDTH: int
+--
++FirstLevelFactory(): ctor
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>2877</y>
+      <w>273</w>
+      <h>343</h>
+    </coordinates>
+    <panel_attributes>/&lt;&lt;Abstract&gt;&gt;/
+/Level/
+--
+#entities: ArrayList&lt;Entity&gt;
+#hero: Hero
+#flag: Flag
+#width: double
+#height: double
+#floorHeight: double
+#gravity: double
+#background: List&lt;BackgroundItem&gt;
+--
++Level(double width, double height, double floorHeight): ctor
++moveEntities(): void
++handleCollisions(): void
++moveRight(): void
++moveLeft(): void
++stopMoving(): void
++heroJump(): boolean
++heroShoot(): boolean
++getEntities(): List&lt;Entity&gt;
++setHero(Hero hero): void
++getHero(): Hero
++setFlag(Flag flag): void
++getFlag(): Entity
++getHeight(): double
++getWidth(): double
++getFloorHeight(): double
++setGravity(double gravity): void
++getGravity(): double
++getBackground(): List&lt;BackgroundItem&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>427</x>
+      <y>2877</y>
+      <w>182</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+LevelFactory
+--
+--
+~addBackground(): void
+~addBounds(): void
+~setGravity(double gravity): void
+~makeFromConfig(Config config): void
+~makePreset(): void
+~getLevel(): Level
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>735</y>
+      <w>196</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>stickman.model::StickmanEngine
+--
+-gameTitle: String
+-config: Config
+-inputHandler: KeyboardInputHandler
+-currentLevel: Level
+-lives: int
+-endGame: int
+-toReset: boolean
+--
++StickmanEngine(String configFile): ctor
++initLevel(): void
+-resetHero(): void
++getGameTitle(): String
++getInputHandler(): KeyboardInputHandler
++getCurrentLevel(): Level
++tick(): void
+-checkEndState(): void
++toReset(): boolean
++setToReset(): void
++getEndState(): int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>434</x>
+      <y>3451</y>
+      <w>224</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>layer=4
+/&lt;&lt;Abstract&gt;&gt;/
+AnimationState
+--
+#assetDir: String
+#spriteStrip: Image
+#width: double
+#height: double
+#frames: int
+#tickCount: int
+#index: int
+--
++AnimationState(String assetDir): ctor
++update(ImageView imgView): void
++updateSpriteFrame(ImageView imgView): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>308</x>
+      <y>3619</y>
+      <w>224</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>IdleLeft
+--
+--
++IdleLeft(String assetDir): ctor
++updateSpriteFrame(ImageView imgView): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>308</x>
+      <y>3689</y>
+      <w>224</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>IdleRight
+--
+--
++IdleRight(String assetDir): ctor
++updateSpriteFrame(ImageView imgView): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>539</x>
+      <y>3619</y>
+      <w>224</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>WalkLeft
+--
+--
++WalkLeft(String assetDir): ctor
++updateSpriteFrame(ImageView imgView): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>539</x>
+      <y>3689</y>
+      <w>224</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>WalkRight
+--
+--
++WalkRight(String assetDir): ctor
++updateSpriteFrame(ImageView imgView): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>3990</y>
+      <w>287</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+stickman.view.background::BackgroundItem
+--
+--
+~draw(Pane windowPane): void
+~update(double xViewportOffset, double yViewportOffset): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>385</x>
+      <y>4081</y>
+      <w>287</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>stickman.view.background::Floor
+--
+-walkLayer: Rectangle
+-sideLayer: Rectangle
+--
++Floor(Level l): ctor
++draw(Pane windowPane): void
++update(double xViewportOffset, double yViewportOffset): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>4081</y>
+      <w>287</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>stickman.view.background::Landscape
+--
+-mountains: ImageView
+-trees_1: ImageView
+-trees_2: ImageView
+-trees_3: ImageView
+-parallax: double
+--
++Landscape(Level l): ctor
++draw(Pane windowPane): void
++update(double xViewportOffset, double yViewportOffset): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>3430</y>
+      <w>196</w>
+      <h>259</h>
+    </coordinates>
+    <panel_attributes>GameWindow
+--
+-engine: GameEngine
+-stage: Stage
+-pane: Pane
+-width: double
+-height: double
+-timeline: Timeline
+-xViewportOffset: double
+-yViewportOffset: double
+-VIEWPORT_MARGIN: double
+-VIEWPORT_MARGIN_Y: double
+--
++GameWindow(): ctor
++assignEngine(GameEngine engine): void
++assignStage(Stage stage): void
++setup(double width, double height): void
++initScene(): void
++run(): void
+-runNextFrame(): void
+-checkGameState(): void
+-render(GameEngine engine): void
+-updateViewportOffset(): void
++getPane(): Pane</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>84</x>
+      <y>0</y>
+      <w>175</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>stickman
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>84</x>
+      <y>112</y>
+      <w>406</w>
+      <h>378</h>
+    </coordinates>
+    <panel_attributes>Config
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>539</x>
+      <y>574</y>
+      <w>266</w>
+      <h>217</h>
+    </coordinates>
+    <panel_attributes>Input
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>84</x>
+      <y>714</y>
+      <w>413</w>
+      <h>287</h>
+    </coordinates>
+    <panel_attributes>Model
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>1008</y>
+      <w>1477</w>
+      <h>798</h>
+    </coordinates>
+    <panel_attributes>Entity
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>994</x>
+      <y>1036</y>
+      <w>476</w>
+      <h>602</h>
+    </coordinates>
+    <panel_attributes>Collisions
+bg=Black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>84</x>
+      <y>2856</y>
+      <w>784</w>
+      <h>525</h>
+    </coordinates>
+    <panel_attributes>stickman.model.stage
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>84</x>
+      <y>3388</y>
+      <w>798</w>
+      <h>427</h>
+    </coordinates>
+    <panel_attributes>View
+bg=green
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>301</x>
+      <y>3430</y>
+      <w>483</w>
+      <h>364</h>
+    </coordinates>
+    <panel_attributes>Animation
+bg=red
+layer=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>84</x>
+      <y>3969</y>
+      <w>595</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>Package: stickman.view.background
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>2975</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>217</x>
+      <y>3213</y>
+      <w>21</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>658</x>
+      <y>644</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>329</y>
+      <w>21</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>1246</y>
+      <w>196</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0;260.0;30.0;260.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>1246</y>
+      <w>21</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>1246</y>
+      <w>203</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;270.0;30.0;10.0;30.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>1358</y>
+      <w>161</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;210.0;80.0;210.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>1358</y>
+      <w>336</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0;460.0;90.0;460.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>1358</y>
+      <w>511</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;710.0;100.0;710.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>294</x>
+      <y>1358</y>
+      <w>98</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>120.0;10.0;120.0;130.0;10.0;130.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>196</x>
+      <y>1358</y>
+      <w>119</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0;150.0;130.0;150.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>294</x>
+      <y>1659</y>
+      <w>161</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;210.0;70.0;210.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>147</x>
+      <y>1659</y>
+      <w>168</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>220.0;10.0;220.0;70.0;10.0;70.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>399</x>
+      <y>1358</y>
+      <w>119</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;150.0;50.0;150.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>182</x>
+      <y>1043</y>
+      <w>63</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>574</x>
+      <y>1036</y>
+      <w>105</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;170.0;70.0;170.0;70.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>574</x>
+      <y>1162</y>
+      <w>105</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>574</x>
+      <y>1176</y>
+      <w>105</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0;70.0;150.0;130.0;150.0</additional_attributes>
+  </element>
+</diagram>

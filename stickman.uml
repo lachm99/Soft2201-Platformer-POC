@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>stickman</OriginalElement>
+  <nodes>
+    <node x="821.0" y="490.0">stickman.model.entity.VelocityEntity</node>
+    <node x="1847.1630036630036" y="413.0">stickman.config.JsonReader</node>
+    <node x="0.0" y="2062.0">stickman.model.entity.collisions.MushroomCollisionHandler</node>
+    <node x="2009.5" y="1793.0">stickman.input.KeyboardInputHandler</node>
+    <node x="2088.1630036630036" y="436.0">stickman.model.stage.FirstLevel</node>
+    <node x="977.0" y="2062.0">stickman.model.entity.collisions.BulletCollisionHandler</node>
+    <node x="588.4130036630038" y="959.0">stickman.model.entity.Bullet</node>
+    <node x="2285.0" y="1793.0">stickman.App</node>
+    <node x="2366.1630036630036" y="0.0">stickman.model.GameEngine</node>
+    <node x="1498.0" y="2008.0">stickman.model.stage.FirstLevelFactory</node>
+    <node x="750.6630036630038" y="1649.0">stickman.model.entity.RedEnemy</node>
+    <node x="1847.1630036630036" y="0.0">stickman.config.ConfigReader</node>
+    <node x="2094.1630036630036" y="0.0">stickman.model.stage.Level</node>
+    <node x="0.0" y="357.0">stickman.model.entity.Platform</node>
+    <node x="1498.0" y="1793.0">stickman.model.stage.LevelFactory</node>
+    <node x="1631.1630036630036" y="490.5">stickman.model.entity.ShooterEntity</node>
+    <node x="749.0" y="2062.0">stickman.model.entity.collisions.FlagCollisionHandler</node>
+    <node x="1140.1630036630036" y="479.0">stickman.model.entity.AnimatedEntity</node>
+    <node x="1348.1630036630036" y="368.0">stickman.model.entity.Barrier</node>
+    <node x="1010.6630036630038" y="1649.0">stickman.model.entity.BlueEnemy</node>
+    <node x="1754.0" y="1793.0">stickman.config.Config</node>
+    <node x="852.4130036630038" y="882.0">stickman.model.entity.Enemy</node>
+    <node x="805.9130036630038" y="0.0">stickman.model.entity.Entity</node>
+    <node x="639.0" y="1793.0">stickman.model.entity.collisions.CollisionHandler</node>
+    <node x="1221.0" y="2062.0">stickman.model.entity.collisions.SurfaceCollisionHandler</node>
+    <node x="557.0" y="357.0">stickman.model.entity.Mushroom</node>
+    <node x="1226.0833333333335" y="772.0">stickman.model.entity.Hero</node>
+    <node x="2366.1630036630036" y="259.0">stickman.model.StickmanEngine</node>
+    <node x="1995.0" y="1919.0">stickman.input.StickmanInputHandler</node>
+    <node x="2519.0" y="1793.0">stickman.view</node>
+    <node x="281.99999999999994" y="2040.0">stickman.model.entity.collisions.EnemyCollisionHandler</node>
+    <node x="521.0" y="2040.0">stickman.model.entity.collisions.HeroCollisionHandler</node>
+    <node x="293.0" y="357.0">stickman.model.entity.Flag</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="stickman.model.entity.collisions.BulletCollisionHandler" target="stickman.model.entity.collisions.CollisionHandler">
+      <point x="0.0" y="-116.5" />
+      <point x="1089.0" y="2010.0" />
+      <point x="789.0" y="2010.0" />
+      <point x="50.0" y="93.5" />
+    </edge>
+    <edge source="stickman.model.entity.Hero" target="stickman.model.entity.AnimatedEntity">
+      <point x="0.0" y="-413.5" />
+      <point x="1375.0833333333335" y="752.0" />
+      <point x="1281.1630036630036" y="752.0" />
+      <point x="47.0" y="60.5" />
+    </edge>
+    <edge source="stickman.model.entity.collisions.HeroCollisionHandler" target="stickman.model.entity.collisions.CollisionHandler">
+      <point x="0.0" y="-138.5" />
+      <point x="625.0" y="2020.0" />
+      <point x="722.3333333333333" y="2020.0" />
+      <point x="-16.66666666666663" y="93.5" />
+    </edge>
+    <edge source="stickman.model.stage.FirstLevel" target="stickman.model.stage.Level">
+      <point x="0.0" y="-104.5" />
+      <point x="0.0" y="193.0" />
+    </edge>
+    <edge source="stickman.model.entity.collisions.FlagCollisionHandler" target="stickman.model.entity.collisions.CollisionHandler">
+      <point x="0.0" y="-116.5" />
+      <point x="853.0" y="2020.0" />
+      <point x="755.6666666666665" y="2020.0" />
+      <point x="16.66666666666663" y="93.5" />
+    </edge>
+    <edge source="stickman.model.StickmanEngine" target="stickman.model.GameEngine">
+      <point x="0.0" y="-171.5" />
+      <point x="0.0" y="104.5" />
+    </edge>
+    <edge source="stickman.model.entity.BlueEnemy" target="stickman.model.entity.Enemy">
+      <point x="0.0" y="-49.5" />
+      <point x="1132.1630036630038" y="1624.0" />
+      <point x="1075.9130036630038" y="1624.0" />
+      <point x="74.5" y="303.5" />
+    </edge>
+    <edge source="stickman.model.entity.Platform" target="stickman.model.entity.Entity">
+      <point x="0.0" y="-182.5" />
+      <point x="136.5" y="317.0" />
+      <point x="823.3415750915752" y="317.0" />
+      <point x="-104.57142857142856" y="148.5" />
+    </edge>
+    <edge source="stickman.model.entity.Flag" target="stickman.model.entity.Entity">
+      <point x="0.0" y="-182.5" />
+      <point x="415.0" y="327.0" />
+      <point x="858.1987179487181" y="327.0" />
+      <point x="-69.71428571428567" y="148.5" />
+    </edge>
+    <edge source="stickman.model.entity.Barrier" target="stickman.model.entity.Entity">
+      <point x="0.0" y="-171.5" />
+      <point x="1479.6630036630036" y="327.0" />
+      <point x="997.6272893772895" y="327.0" />
+      <point x="69.71428571428567" y="148.5" />
+    </edge>
+    <edge source="stickman.model.entity.Hero" target="stickman.model.entity.ShooterEntity">
+      <point x="99.33333333333326" y="-413.5" />
+      <point x="1474.4166666666665" y="752.0" />
+      <point x="1716.6630036630036" y="752.0" />
+      <point x="0.0" y="49.0" />
+    </edge>
+    <edge source="stickman.model.entity.RedEnemy" target="stickman.model.entity.Enemy">
+      <point x="-1.1368683772161603E-13" y="-49.5" />
+      <point x="870.6630036630037" y="1624.0" />
+      <point x="926.9130036630038" y="1624.0" />
+      <point x="-74.5" y="303.5" />
+    </edge>
+    <edge source="stickman.model.stage.FirstLevelFactory" target="stickman.model.stage.LevelFactory">
+      <point x="0.0" y="-105.5" />
+      <point x="0.0" y="82.5" />
+    </edge>
+    <edge source="stickman.model.entity.ShooterEntity" target="stickman.model.entity.Entity">
+      <point x="0.0" y="-49.0" />
+      <point x="1716.6630036630036" y="317.0" />
+      <point x="1032.4844322344322" y="317.0" />
+      <point x="104.57142857142856" y="148.5" />
+    </edge>
+    <edge source="stickman.model.entity.Bullet" target="stickman.model.entity.VelocityEntity">
+      <point x="0.0" y="-226.5" />
+      <point x="710.4130036630038" y="752.0" />
+      <point x="847.6666666666666" y="752.0" />
+      <point x="-53.33333333333337" y="49.5" />
+    </edge>
+    <edge source="stickman.model.entity.AnimatedEntity" target="stickman.model.entity.Entity">
+      <point x="0.0" y="-60.5" />
+      <point x="1234.1630036630036" y="337.0" />
+      <point x="962.7701465201467" y="337.0" />
+      <point x="34.85714285714289" y="148.5" />
+    </edge>
+    <edge source="stickman.model.entity.Mushroom" target="stickman.model.entity.Entity">
+      <point x="0.0" y="-182.5" />
+      <point x="679.0" y="337.0" />
+      <point x="893.0558608058609" y="337.0" />
+      <point x="-34.85714285714289" y="148.5" />
+    </edge>
+    <edge source="stickman.model.entity.Enemy" target="stickman.model.entity.AnimatedEntity">
+      <point x="74.5" y="-303.5" />
+      <point x="1075.9130036630038" y="752.0" />
+      <point x="1187.1630036630036" y="752.0" />
+      <point x="-47.0" y="60.5" />
+    </edge>
+    <edge source="stickman.model.entity.Hero" target="stickman.model.entity.VelocityEntity">
+      <point x="-99.33333333333326" y="-413.5" />
+      <point x="1275.75" y="742.0" />
+      <point x="954.3333333333334" y="742.0" />
+      <point x="53.33333333333337" y="49.5" />
+    </edge>
+    <edge source="stickman.input.StickmanInputHandler" target="stickman.input.KeyboardInputHandler">
+      <point x="0.0" y="-105.0" />
+      <point x="0.0" y="38.0" />
+    </edge>
+    <edge source="stickman.config.JsonReader" target="stickman.config.ConfigReader">
+      <point x="0.0" y="-270.5" />
+      <point x="0.0" y="181.5" />
+    </edge>
+    <edge source="stickman.model.entity.collisions.MushroomCollisionHandler" target="stickman.model.entity.collisions.CollisionHandler">
+      <point x="0.0" y="-116.5" />
+      <point x="131.0" y="2000.0" />
+      <point x="655.6666666666665" y="2000.0" />
+      <point x="-83.33333333333337" y="93.5" />
+    </edge>
+    <edge source="stickman.model.entity.VelocityEntity" target="stickman.model.entity.Entity">
+      <point x="0.0" y="-49.5" />
+      <point x="901.0" y="337.0" />
+      <point x="927.9130036630038" y="337.0" />
+      <point x="0.0" y="148.5" />
+    </edge>
+    <edge source="stickman.model.entity.collisions.EnemyCollisionHandler" target="stickman.model.entity.collisions.CollisionHandler">
+      <point x="0.0" y="-138.5" />
+      <point x="391.49999999999994" y="2010.0" />
+      <point x="689.0" y="2010.0" />
+      <point x="-50.0" y="93.5" />
+    </edge>
+    <edge source="stickman.model.entity.Enemy" target="stickman.model.entity.VelocityEntity">
+      <point x="-74.5" y="-303.5" />
+      <point x="926.9130036630038" y="752.0" />
+      <point x="901.0" y="752.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="stickman.model.entity.collisions.SurfaceCollisionHandler" target="stickman.model.entity.collisions.CollisionHandler">
+      <point x="0.0" y="-116.5" />
+      <point x="1337.0" y="2000.0" />
+      <point x="822.3333333333333" y="2000.0" />
+      <point x="83.33333333333337" y="93.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8023273855702094" x="1147.0271707600077" y="463.5931154515568" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+    <Category>Properties</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
