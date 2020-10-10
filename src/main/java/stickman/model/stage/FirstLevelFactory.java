@@ -23,9 +23,6 @@ public class FirstLevelFactory implements LevelFactory {
         Hero h = new Hero();
         h.setSize(config.getHeroSize());
         h.setX(config.getHeroXPos());
-        System.out.println("Level Height: " + l.getHeight());
-        System.out.println("Hero Pos: " + config.getHeroYPos());
-        System.out.println("Hero Height: " + h.getHeight());
         h.setY(l.getHeight() - config.getHeroYPos() - h.getHeight());
 
         l.setHero(h);

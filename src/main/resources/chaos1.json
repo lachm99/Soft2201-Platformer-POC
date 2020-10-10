@@ -1,0 +1,59 @@
+{
+  "heroSize": "normal",
+  "mapHeight": "600",
+  "floorHeight": "50",
+  "heroPos": ["0","50"],
+  "cloudVelocity": "0",
+  "platformsPos": [
+    {
+      "xPos": "400",
+      "yPos": "80",
+      "length": "10"
+    },
+    {
+      "xPos": "600",
+      "yPos": "80",
+      "length": "10"
+    },
+    {
+      "xPos": "400",
+      "yPos": "120",
+      "length": "10"
+    },
+    {
+      "xPos": "600",
+      "yPos": "120",
+      "length": "10"
+    }
+  ],
+
+  "mushroomsPos": ["130", "480", "1400"],
+
+  "enemies": [
+    {
+      "type": "blue",
+      "xPos": "410"
+    },
+    {
+      "type": "red",
+      "xPos": "440"
+    },
+    {
+      "type": "blue",
+      "xPos": "465"
+    },
+    {
+      "type": "red",
+      "xPos": "425"
+    },
+    {
+      "type": "red",
+      "xPos": "575"
+    },
+    {
+      "type": "blue",
+      "xPos": "540"
+    }
+  ],
+  "flagPos": ["500", "50"]
+}

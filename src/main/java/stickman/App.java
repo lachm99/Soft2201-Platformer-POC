@@ -10,8 +10,7 @@ public class App extends Application {
     private final double WINDOW_WIDTH = 800;
     private final double WINDOW_HEIGHT = 600;
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         launch(args);
     }
 

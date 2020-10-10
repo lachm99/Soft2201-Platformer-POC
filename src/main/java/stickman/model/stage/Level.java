@@ -11,7 +11,6 @@ import java.util.List;
 public abstract class Level {
     protected ArrayList<Entity> entities;
     protected Hero hero;
-    protected Flag flag;
     protected final double width;
     protected final double height;
     protected final double floorHeight;
@@ -56,12 +55,7 @@ public abstract class Level {
     }
 
     public void setFlag(Flag flag) {
-        this.flag = flag;
         this.entities.add(flag);
-    }
-
-    public Entity getFlag() {
-        return this.flag;
     }
 
     public double getHeight() {

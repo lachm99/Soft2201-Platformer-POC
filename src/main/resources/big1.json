@@ -1,0 +1,19 @@
+{
+  "heroSize": "large",
+  "mapHeight": "600",
+  "floorHeight": "50",
+  "heroPos": ["50","50"],
+  "cloudVelocity": "0",
+  "platformsPos": [
+  ],
+
+  "mushroomsPos": ["500"],
+
+  "enemies": [
+    {
+      "type": "blue",
+      "xPos": "700"
+    }
+  ],
+  "flagPos": ["1000", "50"]
+}

@@ -64,6 +64,7 @@ public class FlagCollisionHandler implements CollisionHandler {
 
     @Override
     public void reactToCollision(Entity e2) {
+        // If hero collides, tell the hero to win.
         if (e2 instanceof Hero) {
             ((Hero) e2).setHasWon(true);
         }
