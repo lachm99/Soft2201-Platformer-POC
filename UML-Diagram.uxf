@@ -10,7 +10,8 @@
       <w>138</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>App
+    <panel_attributes>bg=white
+App
 --
 -WINDOW_WIDTH: double
 -WINDOW_HEIGHT: double
@@ -29,7 +30,8 @@ group=12</panel_attributes>
       <w>144</w>
       <h>300</h>
     </coordinates>
-    <panel_attributes>Config
+    <panel_attributes>bg=white
+Config
 --
 -heroSize: String
 -mapHeight: int
@@ -73,7 +75,8 @@ group=5</panel_attributes>
       <w>150</w>
       <h>174</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
+    <panel_attributes>bg=white
+&lt;&lt;interface&gt;&gt;
 ConfigReader
 --
 --
@@ -104,7 +107,8 @@ group=5</panel_attributes>
       <w>150</w>
       <h>102</h>
     </coordinates>
-    <panel_attributes>JsonReader
+    <panel_attributes>bg=white
+JsonReader
 --
 -success: boolean
 -configJson: JSONObject
@@ -128,7 +132,8 @@ group=5</panel_attributes>
       <w>216</w>
       <h>48</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
+    <panel_attributes>bg=white
+&lt;&lt;interface&gt;&gt;
 KeyboardInputHandler
 --
 --
@@ -145,7 +150,8 @@ group=6</panel_attributes>
       <w>216</w>
       <h>84</h>
     </coordinates>
-    <panel_attributes>StickmanInputHandler
+    <panel_attributes>bg=white
+StickmanInputHandler
 --
 -engine: GameEngine
 -left = false: boolean
@@ -167,7 +173,8 @@ group=6</panel_attributes>
       <w>156</w>
       <h>78</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
+    <panel_attributes>bg=white
+&lt;&lt;interface&gt;&gt;
 AnimatedEntity
 --
 --
@@ -187,7 +194,8 @@ AnimatedEntity
       <w>270</w>
       <h>90</h>
     </coordinates>
-    <panel_attributes>Barrier
+    <panel_attributes>bg=white
+Barrier
 --
 -width: double
 -height: double
@@ -209,7 +217,8 @@ AnimatedEntity
       <w>240</w>
       <h>66</h>
     </coordinates>
-    <panel_attributes>BlueEnemy
+    <panel_attributes>bg=white
+BlueEnemy
 --
 --
 +BlueEnemy(double xPos, double yPos, double sizeMult): ctor
@@ -227,7 +236,8 @@ AnimatedEntity
       <w>120</w>
       <h>138</h>
     </coordinates>
-    <panel_attributes>Bullet
+    <panel_attributes>bg=white
+Bullet
 --
 -view: Rectangle
 -width: double
@@ -400,7 +410,8 @@ group=1</panel_attributes>
       <w>222</w>
       <h>168</h>
     </coordinates>
-    <panel_attributes>/&lt;&lt;Abstract&gt;&gt;/
+    <panel_attributes>bg=white
+/&lt;&lt;Abstract&gt;&gt;/
 /Enemy/
 --
 #animationStates: Map&lt;String, AnimationState&gt;
@@ -431,6 +442,7 @@ group=1</panel_attributes>
       <h>186</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
+bg=white
 Entity
 --
 --
@@ -472,6 +484,7 @@ Entity
 -toDelete: boolean
 --
 +Flag(double xPos, double yPos): ctor
+bg=white
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -483,7 +496,8 @@ Entity
       <w>192</w>
       <h>294</h>
     </coordinates>
-    <panel_attributes>Hero
+    <panel_attributes>bg=white
+Hero
 --
 -animationStates: Map&lt;String, AnimationState&gt;
 -animationState: String
@@ -525,7 +539,8 @@ Entity
       <w>270</w>
       <h>102</h>
     </coordinates>
-    <panel_attributes>Mushroom
+    <panel_attributes>bg=white
+Mushroom
 --
 -view: ImageView
 -xPos: double
@@ -547,7 +562,8 @@ Entity
       <w>270</w>
       <h>102</h>
     </coordinates>
-    <panel_attributes>Platform
+    <panel_attributes>bg=white
+Platform
 --
 -view: Rectangle
 -xPos: double
@@ -570,7 +586,8 @@ Entity
       <w>240</w>
       <h>66</h>
     </coordinates>
-    <panel_attributes>RedEnemy
+    <panel_attributes>bg=white
+RedEnemy
 --
 --
 +RedEnemy(double xPos, double yPos, double sizeMult): ctor
@@ -588,7 +605,8 @@ Entity
       <w>144</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
+    <panel_attributes>bg=white
+&lt;&lt;interface&gt;&gt;
 ShooterEntity
 --
 --
@@ -607,7 +625,8 @@ ShooterEntity
       <w>144</w>
       <h>78</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
+    <panel_attributes>bg=white
+&lt;&lt;interface&gt;&gt;
 VelocityEntity
 --
 --
@@ -626,7 +645,8 @@ VelocityEntity
       <w>168</w>
       <h>126</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
+    <panel_attributes>bg=white
+&lt;&lt;interface&gt;&gt;
 GameEngine
 --
 --
@@ -649,7 +669,8 @@ GameEngine
       <w>234</w>
       <h>18</h>
     </coordinates>
-    <panel_attributes>FirstLevel
+    <panel_attributes>bg=white
+FirstLevel
 --
 group=4</panel_attributes>
     <additional_attributes/>
@@ -662,7 +683,8 @@ group=4</panel_attributes>
       <w>156</w>
       <h>54</h>
     </coordinates>
-    <panel_attributes>FirstLevelFactory
+    <panel_attributes>bg=white
+FirstLevelFactory
 --
 - l: Level
 - WIDTH: int
@@ -680,7 +702,8 @@ group=4</panel_attributes>
       <w>234</w>
       <h>276</h>
     </coordinates>
-    <panel_attributes>/&lt;&lt;Abstract&gt;&gt;/
+    <panel_attributes>bg=white
+/&lt;&lt;Abstract&gt;&gt;/
 /Level/
 --
 #entities: ArrayList&lt;Entity&gt;
@@ -720,7 +743,8 @@ group=4</panel_attributes>
       <w>156</w>
       <h>90</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
+    <panel_attributes>bg=white
+&lt;&lt;interface&gt;&gt;
 LevelFactory
 --
 --
@@ -742,7 +766,8 @@ group=4</panel_attributes>
       <w>168</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>StickmanEngine
+    <panel_attributes>bg=white
+StickmanEngine
 --
 -gameTitle: String
 -config: Config
@@ -767,6 +792,7 @@ group=4</panel_attributes>
       <h>138</h>
     </coordinates>
     <panel_attributes>layer=4
+bg=white
 /&lt;&lt;Abstract&gt;&gt;/
 AnimationState
 --
@@ -794,7 +820,8 @@ group=9</panel_attributes>
       <w>192</w>
       <h>54</h>
     </coordinates>
-    <panel_attributes>IdleLeft
+    <panel_attributes>bg=white
+IdleLeft
 --
 --
 +IdleLeft(String assetDir): ctor
@@ -811,7 +838,8 @@ group=9</panel_attributes>
       <w>192</w>
       <h>54</h>
     </coordinates>
-    <panel_attributes>IdleRight
+    <panel_attributes>bg=white
+IdleRight
 --
 --
 +IdleRight(String assetDir): ctor
@@ -828,7 +856,8 @@ group=9</panel_attributes>
       <w>192</w>
       <h>54</h>
     </coordinates>
-    <panel_attributes>WalkLeft
+    <panel_attributes>bg=white
+WalkLeft
 --
 --
 +WalkLeft(String assetDir): ctor
@@ -846,7 +875,8 @@ group=9</panel_attributes>
       <w>192</w>
       <h>54</h>
     </coordinates>
-    <panel_attributes>WalkRight
+    <panel_attributes>bg=white
+WalkRight
 --
 --
 +WalkRight(String assetDir): ctor
@@ -864,7 +894,8 @@ group=9</panel_attributes>
       <w>246</w>
       <h>54</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
+    <panel_attributes>bg=white
+&lt;&lt;interface&gt;&gt;
 stickman.view.background::BackgroundItem
 --
 --
@@ -882,7 +913,8 @@ group=10</panel_attributes>
       <w>246</w>
       <h>48</h>
     </coordinates>
-    <panel_attributes>Floor
+    <panel_attributes>bg=white
+Floor
 --
 -walkLayer: Rectangle
 -sideLayer: Rectangle
@@ -901,6 +933,7 @@ group=10</panel_attributes>
       <h>84</h>
     </coordinates>
     <panel_attributes>Landscape
+bg=white
 --
 -mountains: ImageView
 -trees_1: ImageView
@@ -922,7 +955,8 @@ group=10</panel_attributes>
       <w>168</w>
       <h>222</h>
     </coordinates>
-    <panel_attributes>GameWindow
+    <panel_attributes>bg=white
+GameWindow
 --
 -engine: GameEngine
 -stage: Stage
@@ -993,8 +1027,8 @@ group=6</panel_attributes>
     <coordinates>
       <x>174</x>
       <y>336</y>
-      <w>894</w>
-      <h>1656</h>
+      <w>858</w>
+      <h>1650</h>
     </coordinates>
     <panel_attributes>Model
 bg=blue
@@ -1007,7 +1041,7 @@ layer=-10
     <coordinates>
       <x>180</x>
       <y>762</y>
-      <w>882</w>
+      <w>846</w>
       <h>1218</h>
     </coordinates>
     <panel_attributes>Entity
@@ -1035,7 +1069,7 @@ group=1</panel_attributes>
     <coordinates>
       <x>540</x>
       <y>378</y>
-      <w>510</w>
+      <w>462</w>
       <h>390</h>
     </coordinates>
     <panel_attributes>Stage
@@ -1511,13 +1545,13 @@ m2=*</panel_attributes>
     <coordinates>
       <x>618</x>
       <y>486</y>
-      <w>438</w>
+      <w>444</w>
       <h>1908</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 m1=0..*
 m2=1</panel_attributes>
-    <additional_attributes>10.0;3150.0;710.0;3150.0;710.0;300.0;310.0;300.0;310.0;10.0;280.0;10.0</additional_attributes>
+    <additional_attributes>10.0;3150.0;710.0;3150.0;720.0;430.0;310.0;430.0;310.0;10.0;280.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -1693,6 +1727,109 @@ style=wordwrap</panel_attributes>
     <panel_attributes>&lt;&lt;uses&gt;&gt;
 style=wordwrap
 layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>312</y>
+      <w>132</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;170.0;60.0;170.0;250.0;200.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>738</x>
+      <y>336</y>
+      <w>96</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Uses + paramater&gt;&gt;
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>840</x>
+      <y>588</y>
+      <w>150</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>LevelFactory is the compositor of
+many other objects, but hands off
+ownership to the level.
+These comp. include (Not all on
+UML for the sake of clarity):
+Hero, Barriers, Platforms, Enemies,
+and most level entities.
+bg=green
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>840</x>
+      <y>588</y>
+      <w>150</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>
+bg=green
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>456</y>
+      <w>42</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=..
+bg=red
+fg=red
+layer=10</panel_attributes>
+    <additional_attributes>20.0;10.0;50.0;10.0;50.0;280.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>768</x>
+      <y>1644</y>
+      <w>192</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>CollisionHandlers each define behaviour
+for entities, and how they ought to interact
+with other entities upon collision.
+
+The concrete classes specify what is to happen
+when, for example, the hero collides with the flag.
+
+This enables outcome based behaviour without
+hard coding lots of checks in one place.
+bg=green
+layer=10</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>768</x>
+      <y>1644</y>
+      <w>192</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>
+bg=green
+layer=10</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

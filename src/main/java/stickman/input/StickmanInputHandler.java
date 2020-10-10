@@ -2,9 +2,11 @@ package stickman.input;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import stickman.model.GameEngine;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -23,6 +25,22 @@ public class StickmanInputHandler implements KeyboardInputHandler{
 
     public StickmanInputHandler(GameEngine engine) {
         this.engine = engine;
+
+        URL mediaUrl = getClass().getResource("/jump.wav");
+        String jumpURL = mediaUrl.toExternalForm();
+
+        Media sound = new Media(jumpURL);
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        sounds.put("jump", mediaPlayer);
+
+
+        URL mediaUrl2 = getClass().getResource("/shoot.wav");
+        String shootURL = mediaUrl2.toExternalForm();
+
+        Media sound2 = new Media(shootURL);
+        MediaPlayer mediaPlayer2 = new MediaPlayer(sound2);
+        sounds.put("shoot", mediaPlayer2);
+
     }
 
     @Override
@@ -41,10 +59,18 @@ public class StickmanInputHandler implements KeyboardInputHandler{
                 this.right = true;
                 break;
             case UP:
-                engine.getCurrentLevel().heroJump();
+                if (engine.getCurrentLevel().heroJump()) {
+                    MediaPlayer jumpPlayer = sounds.get("jump");
+                    jumpPlayer.stop();
+                    jumpPlayer.play();
+                }
                 return;
             case SPACE:
-                engine.getCurrentLevel().heroShoot();
+                if (engine.getCurrentLevel().heroShoot()) {
+                    MediaPlayer shootPlayer = sounds.get("shoot");
+                    shootPlayer.stop();
+                    shootPlayer.play();
+                };
                 return;
             default:
                 return;

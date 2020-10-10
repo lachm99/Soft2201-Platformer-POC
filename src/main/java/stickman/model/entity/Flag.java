@@ -21,7 +21,7 @@ public class Flag implements Entity {
     public Flag(double xPos, double yPos) {
         this.xPos = xPos;
         this.yPos = yPos - height;
-        this.view = new ImageView("flag.png");
+        this.view = new ImageView("Flag.png");
         view.setX(xPos);
         view.setY(yPos - height);
         this.view.setViewOrder(50);
